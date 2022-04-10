@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const jobsroute=require( './routes/jobroute.js' );
-const PORT=process.env.PORT || 3001;
+const PORT=process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
