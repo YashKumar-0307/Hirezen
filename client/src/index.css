@@ -57,3 +57,11 @@ code {
   margin: 0 !important;
   padding: 10px !important;
 }
+
+.sweet-loading {
+  position: fixed !important;
+  top: 30% !important;
+  height: 100% !important;
+  width: 100% !important;
+  z-index: 9999;
+}
