@@ -4,10 +4,12 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const jobsroute=require( './routes/jobroute.js' );
+const userroute=require( './routes/userroute.js' );
 const PORT=process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 
 async function dbconnect()
@@ -31,6 +33,7 @@ async function dbconnect()
 dbconnect();
 
 app.use('/api/jobs/',jobsroute);
+app.use('/api/users/',userroute);
 
 app.get('/',(req,res)=>{
     res.send('Server Running');
