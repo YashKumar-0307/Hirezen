@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import { css } from "@emotion/react";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useSelector } from "react-redux";
+import Register from "./pages/Register";
 
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
@@ -25,8 +26,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/info" exact element={<Info />} />
+          <Route path="/jobs/:id" exact element={<Info />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/register" exact element={<Register />} />
           <Route path="/post" exact element={<Post />} />
           <Route path="/profile" exact element={<Profile />} />
         </Routes>

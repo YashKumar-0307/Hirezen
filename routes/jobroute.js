@@ -1,17 +1,14 @@
 const express = require("express");
 const router = express.Router();
-let Jobs = require( '../models/jobsSchema.js' );
+let Jobs = require("../models/jobsSchema.js");
 
-router.get("/getalljobs",async(req,res)=>{
-    try
-    {
-        const jobs=await Jobs.find();
-        res.send(jobs);
-    }
-    catch(error)
-    {
-        return res.status(400).json({error});
-    }
-})
+router.get("/getalljobs", async (req, res) => {
+  try {
+    const jobs = await Jobs.find();
+    res.send(jobs);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
 
 module.exports = router;
