@@ -7,21 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YashKumar-0307/Hirezen.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/YashKumar-0307/Hirezen/issues"
-  },
-  "homepage": "https://github.com/YashKumar-0307/Hirezen#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongoose": "^6.2.10",
-    "nodemon": "^2.0.15"
+    "nodemon": "^1.12.7"
   }
 }
