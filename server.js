@@ -3,6 +3,7 @@ const bodyParser= require('body-parser');
 const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
+const jobsroute=require( './routes/jobroute.js' );
 const PORT=process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,6 +29,8 @@ async function dbconnect()
     }
 }
 dbconnect();
+
+app.use('/api/jobs/',jobsroute);
 
 app.get('/',(req,res)=>{
     res.send('Server Running');
