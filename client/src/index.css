@@ -52,3 +52,8 @@ code {
 .logo h1 {
   color: white !important;
 }
+
+.ant-layout-content {
+  margin: 0 !important;
+  padding: 10px !important;
+}
