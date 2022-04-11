@@ -5,12 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import ReactDOMClient from "react-dom/client";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = ReactDOMClient.createRoot(container);
+
+root.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById("root")
+  // document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

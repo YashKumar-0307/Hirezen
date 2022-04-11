@@ -37,7 +37,11 @@ class DefaultLayout extends React.Component {
           <div className="logo">
             {this.state.collapsed ? <h1>HS</h1> : <h1>Hirezen</h1>}
           </div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={[window.location.pathname]}>
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={[window.location.pathname]}
+          >
             <Menu.Item key="/" icon={<UserOutlined />}>
               <Link to="/">Home</Link>
             </Menu.Item>
@@ -52,6 +56,9 @@ class DefaultLayout extends React.Component {
             </Menu.Item>
             <Menu.Item key="/info" icon={<UploadOutlined />}>
               <Link to="/info">Info</Link>
+            </Menu.Item>
+            <Menu.Item key="/logout" icon={<UploadOutlined />}>
+              <Link to="/login">Logout</Link>
             </Menu.Item>
           </Menu>
         </Sider>

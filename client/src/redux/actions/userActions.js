@@ -25,11 +25,11 @@ export const loginUser = (values) => async (dispatch) => {
   try {
     const user = await axios.post("/api/users/login", values);
     message.success("Login Successfully!");
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user.data));
 
     // timeout function will show this message for particular time, here for 1000 i.e. 1sec
     setTimeout(() => {
-      window.location.href = "/home"; // Go to home page after 1sec.
+      window.location.href = "/"; // Go to home page after 1sec.
     }, 1000);
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
