@@ -3,6 +3,7 @@ import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Input, Button, message } from "antd";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/actions/userActions";
+import Fade from "react-reveal";
 
 function Register() {
   const dispatch = useDispatch();
@@ -17,61 +18,68 @@ function Register() {
 
   return (
     <div className="register">
-      <Row justify="center">
-        <Col className="registerLogo" style={{ color: "white", paddingRight: '100px' }}>HIREZEN</Col>
-        <Col
-          lg={10}
-          sm={24}
-          className="bs"
-          style={{
-            backgroundColor: "rgba(255,255,255,.5)",
-            borderRadius: "1%",
-          }}
-        >
-          <h1>Register</h1>
-          <hr />
-          <Form layout="vertical" onFinish={register}>
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[{ required: true }]}
-            >
-              <Input
-                style={{
-                  backgroundColor: "rgba(255,255,255,.5)",
-                  borderRadius: "1%",
-                }}
-              />
-            </Form.Item>
+      <Fade top>
+        <Row justify="center">
+          <Col
+            className="registerLogo"
+            style={{ color: "white", paddingRight: "100px" }}
+          >
+            HIREZEN
+          </Col>
+          <Col
+            lg={10}
+            sm={24}
+            className="bs"
+            style={{
+              backgroundColor: "rgba(255,255,255,.5)",
+              borderRadius: "1%",
+            }}
+          >
+            <h1>Register</h1>
+            <hr />
+            <Form layout="vertical" onFinish={register}>
+              <Form.Item
+                label="Username"
+                name="username"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  style={{
+                    backgroundColor: "rgba(255,255,255,.5)",
+                    borderRadius: "1%",
+                  }}
+                />
+              </Form.Item>
 
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[{ required: true }]}
-            >
-              <Input
-                style={{
-                  backgroundColor: "rgba(255,255,255,.5)",
-                  borderRadius: "1%",
-                }}
-              />
-            </Form.Item>
-            <Form.Item
-              label="Confirm Password"
-              name="confirmpassword"
-              rules={[{ required: true }]}
-            >
-              <Input
-                style={{
-                  backgroundColor: "rgba(255,255,255,.5)",
-                  borderRadius: "1%",
-                }}
-              />
-            </Form.Item>
-            <Button htmlType="submit">Register</Button>
-          </Form>
-        </Col>
-      </Row>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  style={{
+                    backgroundColor: "rgba(255,255,255,.5)",
+                    borderRadius: "1%",
+                  }}
+                />
+              </Form.Item>
+              <Form.Item
+                label="Confirm Password"
+                name="confirmpassword"
+                rules={[{ required: true }]}
+              >
+                <Input
+                  style={{
+                    backgroundColor: "rgba(255,255,255,.5)",
+                    borderRadius: "1%",
+                  }}
+                />
+              </Form.Item>
+              <Button htmlType="submit">Register</Button>
+            </Form>
+          </Col>
+        </Row>
+      </Fade>
     </div>
   );
 }

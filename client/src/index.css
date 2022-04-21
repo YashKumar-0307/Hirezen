@@ -105,7 +105,7 @@ button {
   padding-bottom: 150px;
   height: 100vh;
   width: 100vw;
-  
+
   /* background-image: linear-gradient(#26003B, #9100E6, #26003B) !important; */
 }
 
@@ -141,29 +141,29 @@ button {
 
 p {
   animation-duration: 2s;
-  animation-name: slidein;
+  animation-name: bounceInUp;
   animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 300%;
+@keyframes bounceInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(2000px);
   }
-
-  50% {
-    font-size: 200%;
-    margin-left: 25%;
-    width: 150%;
+  60% {
+    opacity: 1;
+    transform: translateY(-30px);
   }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
+  80% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
-.animate-charcter, .registerLogo {
+.animate-character,
+.registerLogo {
   -webkit-text-stroke: 1px white;
   background-image: linear-gradient(
     -225deg,
@@ -191,7 +191,7 @@ p {
   }
 }
 
-Input{
+Input {
   border-radius: 2% !important;
 }
 
