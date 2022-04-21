@@ -16,9 +16,18 @@ function Register() {
   }
 
   return (
-    <div className="login">
+    <div className="register">
       <Row justify="center">
-        <Col lg={10} sm={24} className="bs">
+        <Col className="registerLogo" style={{ color: "white", paddingRight: '100px' }}>HIREZEN</Col>
+        <Col
+          lg={10}
+          sm={24}
+          className="bs"
+          style={{
+            backgroundColor: "rgba(255,255,255,.5)",
+            borderRadius: "1%",
+          }}
+        >
           <h1>Register</h1>
           <hr />
           <Form layout="vertical" onFinish={register}>
@@ -27,7 +36,12 @@ function Register() {
               name="username"
               rules={[{ required: true }]}
             >
-              <Input />
+              <Input
+                style={{
+                  backgroundColor: "rgba(255,255,255,.5)",
+                  borderRadius: "1%",
+                }}
+              />
             </Form.Item>
 
             <Form.Item
@@ -35,14 +49,24 @@ function Register() {
               name="password"
               rules={[{ required: true }]}
             >
-              <Input />
+              <Input
+                style={{
+                  backgroundColor: "rgba(255,255,255,.5)",
+                  borderRadius: "1%",
+                }}
+              />
             </Form.Item>
             <Form.Item
               label="Confirm Password"
               name="confirmpassword"
               rules={[{ required: true }]}
             >
-              <Input />
+              <Input
+                style={{
+                  backgroundColor: "rgba(255,255,255,.5)",
+                  borderRadius: "1%",
+                }}
+              />
             </Form.Item>
             <Button htmlType="submit">Register</Button>
           </Form>

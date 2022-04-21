@@ -75,8 +75,132 @@ code {
 button {
   background-color: #001529 !important;
   color: white !important;
+  border-radius: 8% !important;
+}
+
+.loginPage {
+  /* background-color: #001529; */
+  background-color: #26003b;
+  /* background-image: linear-gradient(#26003B, #26003B , #9100E6) !important; */
+}
+
+.loginPageLogo {
+  color: white;
+  padding: 100px;
+  font-size: 20rem;
 }
 
 .login {
+  /* background-color: #001529; */
+  background-color: #26003b;
   padding-top: 150px;
+  padding-bottom: 150px;
+  /* background-image: linear-gradient(#26003B, #9100E6, #26003B) !important; */
+}
+
+.register {
+  /* background-color: #001529; */
+  background-color: #26003b;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  height: 100vh;
+  width: 100vw;
+  
+  /* background-image: linear-gradient(#26003B, #9100E6, #26003B) !important; */
+}
+
+.arrow {
+  position: relative;
+  bottom: 25rem;
+  left: 50%;
+  margin-left: -20px;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+p {
+  animation-duration: 2s;
+  animation-name: slidein;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  50% {
+    font-size: 200%;
+    margin-left: 25%;
+    width: 150%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.animate-charcter, .registerLogo {
+  -webkit-text-stroke: 1px white;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  /* text-fill-color: transparent; */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+  font-size: 190px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+Input{
+  border-radius: 2% !important;
+}
+
+Input:hover {
+  background-color: white !important;
+}
+
+.registerLogo {
+  position: relative;
+  top: 7rem;
+  font-size: 15rem;
 }
