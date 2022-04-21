@@ -98,6 +98,9 @@ function Login() {
                 </Form.Item>
                 <Button htmlType="submit">Login</Button>
               </Form>
+              <a href="/register" style={{ paddingTop: "50px" }}>
+                Not Registered ? Click here to Register
+              </a>
             </Col>
           </Row>
         </Fade>

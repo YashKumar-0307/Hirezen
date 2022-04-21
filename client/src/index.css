@@ -75,7 +75,7 @@ code {
 button {
   background-color: #001529 !important;
   color: white !important;
-  border-radius: 8% !important;
+  border-radius: 6% !important;
 }
 
 .loginPage {
@@ -203,4 +203,13 @@ Input:hover {
   position: relative;
   top: 7rem;
   font-size: 15rem;
+}
+
+a {
+  padding-top: 20px !important;
+  color: blue !important;
+}
+
+a:hover {
+  color: white !important;
 }
