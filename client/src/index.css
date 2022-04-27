@@ -243,6 +243,7 @@ Input:hover {
 }
 
 .job-div:hover {
-  transform: scale(1.03);
-  transition: all ease-in-out 200ms;
+  cursor: pointer;
+  transform: scale(1.01) !important;
+  transition: all ease-in-out 200ms !important;
 }
