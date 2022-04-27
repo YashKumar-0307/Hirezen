@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 // import "./App.css";
+import { useEffect } from "react";
 import "antd/dist/antd.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -9,11 +10,17 @@ import Post from "./pages/Post";
 import Profile from "./pages/Profile";
 import { css } from "@emotion/react";
 import MoonLoader from "react-spinners/MoonLoader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Register from "./pages/Register";
+import { getAllJobs } from "./redux/actions/jobsAction";
 
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllJobs());
+  }, []);
 
   return (
     <div className="App">

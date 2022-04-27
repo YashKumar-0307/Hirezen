@@ -6,6 +6,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   UploadOutlined,
+  PlusSquareOutlined,
 } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
@@ -64,8 +65,8 @@ class DefaultLayout extends React.Component {
             <Menu.Item key="/post" icon={<VideoCameraOutlined />}>
               <Link to="/post">Post</Link>
             </Menu.Item>
-            <Menu.Item key="/info" icon={<UploadOutlined />}>
-              <Link to="/info">Info</Link>
+            <Menu.Item key="/appliedjob" icon={<PlusSquareOutlined />}>
+              <Link to="/appliedjob">Applied Jobs</Link>
             </Menu.Item>
             <Menu.Item key="/logout" icon={<UploadOutlined />}>
               <Link to="/login">Logout</Link>

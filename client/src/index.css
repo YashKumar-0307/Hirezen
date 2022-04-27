@@ -247,3 +247,7 @@ Input:hover {
   transform: scale(1.01) !important;
   transition: all ease-in-out 200ms !important;
 }
+
+input, .ant-input {
+  border: 1px solid !important;
+}

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import DefaultLayout from "../components/DefaultLayout";
 
-function Info() {
+function Info({ match } ) {
   return (
     <div>
       <DefaultLayout>
@@ -11,4 +11,4 @@ function Info() {
   );
 }
 
-export default Info
+export default Info;
