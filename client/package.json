@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.19.5",
     "axios": "^0.26.1",
+    "moment": "^2.29.3",
     "react": "^18.0.0",
     "react-animated-text": "^0.1.4",
     "react-basic-scroll": "^1.1.1",

@@ -30,10 +30,11 @@ function Login() {
         style={{ transform: `translateY(${offsetY * 0.5}px)` }}
       >
         <p
+          id="logoName"
           style={{
             textAlign: "center",
             display: "flex",
-            paddingLeft: "25rem",
+            paddingLeft: "10rem",
           }}
         >
           {/* <Fade left> */}
@@ -53,6 +54,7 @@ function Login() {
         className="login"
         style={{
           transform: `translateY(${offsetY * 0.3}px)`,
+          bottom: "8rem",
         }}
       >
         <Fade top>
@@ -98,7 +100,11 @@ function Login() {
                 </Form.Item>
                 <Button htmlType="submit">Login</Button>
               </Form>
-              <a href="/register" style={{ paddingTop: "50px" }}>
+              <a
+                className="loginATag"
+                href="/register"
+                style={{ paddingTop: "50px" }}
+              >
                 Not Registered ? Click here to Register
               </a>
             </Col>
