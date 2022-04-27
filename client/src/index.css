@@ -226,3 +226,23 @@ Input:hover {
 .register-flex {
   display: flex !important;
 }
+
+.homepage-pTag {
+  font-weight: 500 !important;
+  margin: 2px !important;
+  padding: 2px !important;
+  font-size: 15px !important;
+}
+
+.job-div {
+  border-radius: 8px !important;
+}
+
+.job-div Button {
+  border-radius: 8px !important;
+}
+
+.job-div:hover {
+  transform: scale(1.03);
+  transition: all ease-in-out 200ms;
+}

@@ -18,7 +18,7 @@ function Home() {
   return (
     <div>
       <DefaultLayout>
-        <Row>
+        <Row gutter={16}>
           {jobs.map((job) => {
             {
               /* 'lg' is for larger devices and 'sm' is for small devices. 12 is the no. of columns out of total 24 columns.
@@ -27,19 +27,19 @@ function Home() {
             }
             return (
               <Col lg={12} sm={24}>
-                <div className="job-div">
+                <div className="job-div bs m-2 p-2">
                   <h4>{job.title}</h4>
-                  <p>{job.company}</p>
+                  <p className="homepage-pTag">{job.company}</p>
                   <hr />
-                  <p>{job.smallDescription}</p>
+                  <p className="homepage-pTag">{job.smallDescription}</p>
                   <div className="flex">
-                    <p>
+                    <p className="homepage-pTag">
                       Salary:{" "}
                       <b>
                         {job.salaryFrom} - {job.salaryTo} /-
                       </b>
                     </p>
-                    <p style={{ marginLeft: "1rem" }}>
+                    <p className="homepage-pTag" style={{ marginLeft: "1rem" }}>
                       Experience: <b>{job.experience} Years</b>
                     </p>
                   </div>
@@ -48,7 +48,7 @@ function Home() {
                     <Link to="/">
                       <Button>View</Button>
                     </Link>
-                    <p>
+                    <p className="homepage-pTag">
                       Posted On: {moment(job.createdAt).format("MMM DD, YYYY")}
                     </p>
                   </div>

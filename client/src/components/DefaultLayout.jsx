@@ -33,7 +33,17 @@ class DefaultLayout extends React.Component {
   render() {
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={this.state.collapsed}
+          style={{
+            position: "sticky",
+            overflow: "auto",
+            height: "100%",
+            top: "0",
+          }}
+        >
           <div className="logo">
             {this.state.collapsed ? <h1>HS</h1> : <h1>Hirezen</h1>}
           </div>
@@ -63,7 +73,16 @@ class DefaultLayout extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header
+            className="site-layout-background"
+            style={{
+              padding: "0",
+              position: "sticky",
+              overflow: "auto",
+              top: "0",
+              zIndex: "9999",
+            }}
+          >
             {React.createElement(
               this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
