@@ -29,4 +29,16 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.post("/update", async (req, res) => {
+  try{
+    await User.findOneAndUpdate({_id : req.body._id} , req.body);
+    const user = await User.findOne({_id : req.body._id});
+    res.send(user);
+  }
+  catch(error)
+  {
+    return res.status(400).json({ error });
+  }
+});
+
 module.exports = router;
