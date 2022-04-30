@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Tabs, Input, Button } from "antd";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../redux/actions/userActions";
 
 const { TabPane } = Tabs;
 const { TextArea } = Input;
@@ -8,6 +10,7 @@ const { TextArea } = Input;
 function Profile() {
   const [personalInfo, setPersonalInfo] = useState();
   const [activeTab, setActiveTab] = useState("1");
+  const dispatch = useDispatch();
 
   function onPersonalInfoSubmit(values) {
     setPersonalInfo(values);
@@ -17,6 +20,7 @@ function Profile() {
   function onFinalFinish(values) {
     const finalObj = { ...personalInfo, ...values };
     console.log(finalObj);
+    dispatch(updateUser(finalObj));
   }
 
   const user = JSON.parse(localStorage.getItem("user"));

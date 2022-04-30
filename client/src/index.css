@@ -248,6 +248,11 @@ Input:hover {
   transition: all ease-in-out 200ms !important;
 }
 
-input, .ant-input {
+input,
+.ant-input {
   border: 1px solid !important;
+}
+
+.ant-message {
+  z-index: 9999 !important;
 }
