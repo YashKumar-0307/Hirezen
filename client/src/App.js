@@ -1,19 +1,17 @@
-import logo from "./logo.svg";
-// import "./App.css";
 import { useEffect } from "react";
 import "antd/dist/antd.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Login from "./pages/Login";
 import Post from "./pages/Post";
 import Posted from "./pages/Posted";
 import Profile from "./pages/Profile";
-import { css } from "@emotion/react";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useDispatch, useSelector } from "react-redux";
 import Register from "./pages/Register";
 import { getAllJobs } from "./redux/actions/jobsAction";
+import EditJob from "./pages/EditJob";
 
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
@@ -35,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/jobs/:id" exact element={<Info />} />
+          <Route path="/editjob/:id" exact element={<EditJob />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/post" exact element={<Post />} />

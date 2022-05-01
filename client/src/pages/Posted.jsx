@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import { Table } from "antd";
 import moment from "moment";
+import { EditOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 function Posted() {
   const alljobs = useSelector((state) => state.jobsReducer).jobs;
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   const userPostedJobs = alljobs.filter((job) => job.postedBy == userid);
-  console.log(userPostedJobs);
+  const navigate = useNavigate();
 
   const columns = [
     {
@@ -28,6 +30,20 @@ function Posted() {
       title: "Posted On",
       dataIndex: "postedOn",
     },
+    {
+      title: "Actions",
+      render: (text, data) => {
+        return (
+          <div className="flex">
+            <EditOutlined
+              onClick={() => {
+                navigate(`/editjob/${data.completeJobData._id}`);
+              }}
+            />
+          </div>
+        );
+      },
+    },
   ];
 
   const dataSource = [];
@@ -38,6 +54,7 @@ function Posted() {
       company: job.company,
       appliedCandidatesIds: job.appliedCandidatesIds.length,
       postedOn: moment(job.createdAt).format("MMM-DD-YYYY"),
+      completeJobData: job,
     };
     dataSource.push(obj);
   }
