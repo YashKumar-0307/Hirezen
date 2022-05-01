@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Tabs, Input, Button, Select } from "antd";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../redux/actions/userActions";
+import { postJob } from "../redux/actions/jobsAction";
 
 const { TabPane } = Tabs;
 const { TextArea } = Input;
@@ -11,6 +11,7 @@ const { Option } = Select;
 function Post() {
   const [jobInfo, setJobInfo] = useState({});
   const [activeTab, setActiveTab] = useState("0");
+  const dispatch = useDispatch();
 
   function onFirstFormFinish(values) {
     setJobInfo(values);
@@ -20,6 +21,7 @@ function Post() {
   function onFinalFormFinish(values) {
     const finalObj = { ...jobInfo, ...values };
     console.log(finalObj);
+    dispatch(postJob(finalObj));
   }
 
   return (
@@ -78,7 +80,7 @@ function Post() {
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
-                    name="skills"
+                    name="skillsRequired"
                     rules={[{ required: true }]}
                     label="Skills"
                   >
