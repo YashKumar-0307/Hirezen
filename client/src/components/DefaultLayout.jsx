@@ -63,7 +63,10 @@ class DefaultLayout extends React.Component {
               <Link to="/login">Login</Link>
             </Menu.Item>
             <Menu.Item key="/post" icon={<VideoCameraOutlined />}>
-              <Link to="/post">Post</Link>
+              <Link to="/post">Post Job</Link>
+            </Menu.Item>
+            <Menu.Item key="/posted" icon={<VideoCameraOutlined />}>
+              <Link to="/posted">Posted</Link>
             </Menu.Item>
             <Menu.Item key="/appliedjob" icon={<PlusSquareOutlined />}>
               <Link to="/appliedjob">Applied Jobs</Link>

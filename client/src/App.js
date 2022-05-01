@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Login from "./pages/Login";
 import Post from "./pages/Post";
+import Posted from "./pages/Posted";
 import Profile from "./pages/Profile";
 import { css } from "@emotion/react";
 import MoonLoader from "react-spinners/MoonLoader";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/post" exact element={<Post />} />
+          <Route path="/posted" exact element={<Posted />} />
           <Route path="/profile" exact element={<Profile />} />
         </Routes>
       </BrowserRouter>
