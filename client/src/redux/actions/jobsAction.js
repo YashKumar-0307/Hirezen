@@ -30,3 +30,18 @@ export const postJob = (values) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: false });
   }
 };
+
+export const editJob = (values) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    const response = await axios.post("/api/jobs/editjob", values);
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+    message.success("Job Updated Successfully!!");
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000);
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};

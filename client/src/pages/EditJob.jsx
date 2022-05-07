@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Tabs, Input, Button, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { postJob } from "../redux/actions/jobsAction";
+import { postJob, editJob } from "../redux/actions/jobsAction";
 
 const { TabPane } = Tabs;
 const { TextArea } = Input;
@@ -20,20 +20,25 @@ function EditJob({ match }) {
 
   function onFinalFormFinish(values) {
     const finalObj = { ...jobInfo, ...values };
+    finalObj._id = match.params.id;
     console.log(finalObj);
-    dispatch(postJob(finalObj));
+    dispatch(editJob(finalObj));
   }
 
   const { jobs } = useSelector((state) => state.jobsReducer);
-    const job = jobs.find((job) => job._id == match.params.id);
-    // console.log(job);
+  const job = jobs.find((job) => job._id == match.params.id);
+  // console.log(job);
 
   return (
     <div>
       <DefaultLayout>
         <Tabs defaultActiveKey="0" activeKey={activeTab}>
           <TabPane tab="Job Info" key="0">
-            <Form layout="vertical" onFinish={onFirstFormFinish} initialValues={job}>
+            <Form
+              layout="vertical"
+              onFinish={onFirstFormFinish}
+              initialValues={job}
+            >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
@@ -127,7 +132,11 @@ function EditJob({ match }) {
             </Form>
           </TabPane>
           <TabPane tab="Company Info" key="1">
-            <Form layout="vertical" onFinish={onFinalFormFinish} initialValues={job}>
+            <Form
+              layout="vertical"
+              onFinish={onFinalFormFinish}
+              initialValues={job}
+            >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
