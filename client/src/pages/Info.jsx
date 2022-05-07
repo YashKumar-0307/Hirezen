@@ -1,13 +1,14 @@
 import React from "react";
 import DefaultLayout from "../components/DefaultLayout";
+import { useParams } from "react-router-dom";
 
-function Info({ match }) {
-
+function Info() {
+  const { id } = useParams();
   return (
     <div>
       <DefaultLayout>
         <h1>Info</h1>
-        {match.params._id}
+        {id}
       </DefaultLayout>
     </div>
   );

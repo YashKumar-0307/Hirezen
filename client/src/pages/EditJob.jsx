@@ -3,12 +3,14 @@ import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Tabs, Input, Button, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { postJob, editJob } from "../redux/actions/jobsAction";
+import { useParams } from "react-router-dom";
 
 const { TabPane } = Tabs;
 const { TextArea } = Input;
 const { Option } = Select;
 
 function EditJob({ match }) {
+  const { id } = useParams();
   const [jobInfo, setJobInfo] = useState({});
   const [activeTab, setActiveTab] = useState("0");
   const dispatch = useDispatch();
@@ -20,13 +22,13 @@ function EditJob({ match }) {
 
   function onFinalFormFinish(values) {
     const finalObj = { ...jobInfo, ...values };
-    finalObj._id = match.params.id;
+    finalObj._id = id;
     console.log(finalObj);
     dispatch(editJob(finalObj));
   }
 
   const { jobs } = useSelector((state) => state.jobsReducer);
-  const job = jobs.find((job) => job._id == match.params.id);
+  const job = jobs.find((job) => job._id == id);
   // console.log(job);
 
   return (
