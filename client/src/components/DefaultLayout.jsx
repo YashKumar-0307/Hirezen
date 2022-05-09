@@ -21,14 +21,15 @@ class DefaultLayout extends React.Component {
     };
   }
 
-  // state = {
-  //   collapsed: false,
-  // };
-
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
+  };
+
+  logout = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
   };
 
   render() {
@@ -71,8 +72,8 @@ class DefaultLayout extends React.Component {
             <Menu.Item key="/appliedjob" icon={<PlusSquareOutlined />}>
               <Link to="/appliedjob">Applied Jobs</Link>
             </Menu.Item>
-            <Menu.Item key="/logout" icon={<UploadOutlined />}>
-              <Link to="/login">Logout</Link>
+            <Menu.Item key="/logout" icon={<UploadOutlined />} onClick={this.logout}>
+              <Link to='/login'>Logout</Link>
             </Menu.Item>
           </Menu>
         </Sider>

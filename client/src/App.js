@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "antd/dist/antd.css";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Login from "./pages/Login";
@@ -31,14 +31,62 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/jobs/:id" exact element={<Info />} />
-          <Route path="/editjob/:id" exact element={<EditJob />} />
           <Route path="/login" exact element={<Login />} />
+          <Route
+            path="/"
+            exact
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/jobs/:id"
+            exact
+            element={
+              <ProtectedRoute>
+                <Info />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/editjob/:id"
+            exact
+            element={
+              <ProtectedRoute>
+                <EditJob />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/post"
+            exact
+            element={
+              <ProtectedRoute>
+                <Post />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/posted"
+            exact
+            element={
+              <ProtectedRoute>
+                <Posted />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            exact
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/register" exact element={<Register />} />
-          <Route path="/post" exact element={<Post />} />
-          <Route path="/posted" exact element={<Posted />} />
-          <Route path="/profile" exact element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -46,3 +94,13 @@ function App() {
 }
 
 export default App;
+
+export function ProtectedRoute({ children }) {
+  const user = localStorage.getItem("user");
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  } else {
+    return children;
+  }
+}
