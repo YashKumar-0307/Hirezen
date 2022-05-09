@@ -33,4 +33,37 @@ router.post("/editjob", async (req, res) => {
   }
 });
 
+router.post("/applyjob", async (req, res) => {
+  const {user, job}=req.body;
+  try
+  {
+    const jobDetails = await Job.findOne({_id : job._id});
+
+    const appliedCandidate = {
+      userid : user._id,
+      appliedDate : moment().format('MMM DD yyyy')
+    }
+
+    jobDetails.appliedCandidates.push(appliedCandidate);
+    await jobDetails.save();
+    
+    const userDetails = await User.findOne({_id : user._id});
+    const appliedJob = {
+      userid : job._id,
+      appliedDate : moment().format('MMM DD yyyy')
+    }
+    userDetails.appliedJobs.push(appliedJob);
+
+    await UserDetails.save();
+
+    res.send('Applied Successfully');
+
+  } 
+  catch(error)
+  {
+    res.send(error);
+  }
+});
+
+
 module.exports = router;
