@@ -82,7 +82,7 @@ function Register() {
                     }}
                   />
                 </Form.Item>
-                <Button htmlType="submit">Register</Button>
+                <Button htmlType="submit" className="mb-3">Register</Button>
               </Form>
               <a
                 className="loginATag"

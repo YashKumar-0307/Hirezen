@@ -98,7 +98,7 @@ function Login() {
                     }}
                   />
                 </Form.Item>
-                <Button htmlType="submit">Login</Button>
+                <Button htmlType="submit" className="mb-3">Login</Button>
               </Form>
               <a
                 className="loginATag"
