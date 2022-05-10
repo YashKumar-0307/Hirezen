@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import { getAllJobs } from "./redux/actions/jobsAction";
 import EditJob from "./pages/EditJob";
 import AppliedJobs from "./pages/AppliedJobs";
+import { getAllUsers } from "./redux/actions/userActions";
 
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
@@ -20,6 +21,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllJobs());
+    dispatch(getAllUsers());
   }, []);
 
   return (

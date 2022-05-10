@@ -59,3 +59,17 @@ export const updateUser = (values) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: false });
   }
 };
+
+// For getting all users data from backend
+export const getAllUsers = () => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true });
+
+  try {
+    const response = await axios.get("/api/users/getallusers");
+    dispatch({ type: "GET_ALL_USERS", payload: response.data });
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};

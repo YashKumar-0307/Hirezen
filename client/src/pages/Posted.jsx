@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
-import { Table } from "antd";
+import { Table, Modal } from "antd";
 import moment from "moment";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, OrderedListOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 function Posted() {
   const alljobs = useSelector((state) => state.jobsReducer).jobs;
+  const allusers = useSelector((state) => state.usersRecuder).users;
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   const userPostedJobs = alljobs.filter((job) => job.postedBy == userid);
   const navigate = useNavigate();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedJob, setSelectedJob] = useState();
 
   const columns = [
     {
@@ -40,6 +43,11 @@ function Posted() {
                 navigate(`/editjob/${data.completeJobData._id}`);
               }}
             />
+            <OrderedListOutlined
+              onClick={() => {
+                showModal(job);
+              }}
+            />
           </div>
         );
       },
@@ -59,11 +67,68 @@ function Posted() {
     dataSource.push(obj);
   }
 
+  const showModal = (job) => {
+    setIsModalVisible(true);
+    setSelectedJob(job);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  function CandidatesList() {
+    const candidatesColumns = [
+      {
+        title: "Candidate ID",
+        dataIndex: "candidateId",
+      },
+      {
+        title: "Full Name",
+        dataIndex: "fullName",
+      },
+      {
+        title: "Applied Date",
+        dataIndex: "appliedDate",
+      },
+    ];
+
+    var candidatesDataSource = [];
+
+    for (var candidate of selectedJob.appliedCandidates) {
+      var user = allusers.find((user) => user._id == candidate.userid);
+      var obj = {
+        candidateId: user._id,
+        fullName: user.firstName + " " + user.lastNane,
+        appliedDate: candidate.appliedDate,
+      };
+
+      candidatesDataSource.push(obj);
+    }
+
+    return (
+      <Table columns={candidatesColumns} dataSource={candidatesDataSource} />
+    );
+  }
+
   return (
     <div>
       <DefaultLayout>
         <h1>Posted Services</h1>
         <Table columns={columns} dataSource={dataSource} />
+        <Modal
+          title="Applied Candidats List"
+          visible={isModalVisible}
+          // onOk={handleOk}
+          // onCancel={handleCancel}
+          width={800}
+          closable={false}
+        >
+          <CandidatesList/>
+        </Modal>
       </DefaultLayout>
     </div>
   );
