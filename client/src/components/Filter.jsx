@@ -47,7 +47,7 @@ function Filter() {
         <Form layout="vertical" onFinish={sort}>
           <Form.Item name="experience" label="Experience">
             <Select>
-              <Option value={0}>Fresher</Option>
+              <Option value={0}>New</Option>
               <Option value={1}>1 Year</Option>
               <Option value={2}>2 Years</Option>
               <Option value={3}>3 Years</Option>
@@ -55,14 +55,14 @@ function Filter() {
               <Option value={5}>5 Years</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="salary" label="Salary">
+          <Form.Item name="salary" label="Service Charges">
             <Select>
-              <Option value={10000}>10000+</Option>
-              <Option value={15000}>15000+</Option>
-              <Option value={20000}>20000+</Option>
-              <Option value={25000}>25000+</Option>
-              <Option value={30000}>30000+</Option>
-              <Option value={50000}>50000+</Option>
+              <Option value={200}>200</Option>
+              <Option value={350}>350</Option>
+              <Option value={500}>500</Option>
+              <Option value={700}>750</Option>
+              <Option value={1000}>1000</Option>
+              <Option value={3000}>3000</Option>
             </Select>
           </Form.Item>
           <Button htmlType="submit">Filter</Button>

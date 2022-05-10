@@ -110,7 +110,7 @@ function Profile() {
               <Button htmlType="submit">Next</Button>
             </Form>
           </TabPane>
-          <TabPane tab="Skills and Education" key="2">
+          <TabPane tab="Services and Education" key="2">
             <Form
               initialValues={user}
               layout="vertical"
@@ -164,7 +164,7 @@ function Profile() {
                               required
                               rules={[{ required: true }]}
                               {...field}
-                              label="Skills"
+                              label="Services Done Till Now"
                               style={{ width: "80%" }}
                             >
                               <TextArea rows={4} />
@@ -201,7 +201,7 @@ function Profile() {
                               required
                               rules={[{ required: true }]}
                               {...field}
-                              label="Project"
+                              label="Business Address"
                               style={{ width: "80%" }}
                             >
                               <TextArea rows={4} />

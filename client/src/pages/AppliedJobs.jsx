@@ -30,15 +30,15 @@ function AppliedJobs() {
 
   const columns = [
     {
-      title: "Job Title",
+      title: "Service Title",
       dataIndex: "title",
     },
     {
-      title: "Company",
+      title: "Service Provider Name",
       dataIndex: "company",
     },
     {
-      title: "Applied Date",
+      title: "Booked Date",
       dataIndex: "appliedDate",
     },
   ];
@@ -46,7 +46,7 @@ function AppliedJobs() {
   return (
     <div>
       <DefaultLayout>
-        <h1>Applied Jobs</h1>
+        <h1>Booked Services</h1>
         <Table columns={columns} dataSource={userAppliedJobs} />
       </DefaultLayout>
     </div>

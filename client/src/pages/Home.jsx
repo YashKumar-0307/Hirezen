@@ -34,9 +34,9 @@ function Home() {
                     <p className="homepage-pTag">{job.company}</p>
                     <hr />
                     <p className="homepage-pTag">{job.smallDescription}</p>
-                    <div className="flex">
+                    <div className="flex justify-content-between">
                       <p className="homepage-pTag">
-                        Salary:{" "}
+                        Service Charges:{" "}
                         <b>
                           {job.salaryFrom} - {job.salaryTo} /-
                         </b>

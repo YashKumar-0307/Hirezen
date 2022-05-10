@@ -28,14 +28,14 @@ function Post() {
     <div>
       <DefaultLayout>
         <Tabs defaultActiveKey="0" activeKey={activeTab}>
-          <TabPane tab="Job Info" key="0">
+          <TabPane tab="Service Info" key="0">
             <Form layout="vertical" onFinish={onFirstFormFinish}>
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
                     name="title"
                     rules={[{ required: true }]}
-                    label="Title"
+                    label="Service Name"
                   >
                     <Input />
                   </Form.Item>
@@ -44,7 +44,7 @@ function Post() {
                   <Form.Item
                     name="department"
                     rules={[{ required: true }]}
-                    label="Department"
+                    label="Service Category"
                   >
                     <Input />
                   </Form.Item>
@@ -53,7 +53,7 @@ function Post() {
                   <Form.Item
                     name="experience"
                     rules={[{ required: true }]}
-                    label="Experience"
+                    label="Experience (in Years)"
                   >
                     <Input />
                   </Form.Item>
@@ -62,7 +62,7 @@ function Post() {
                   <Form.Item
                     name="salaryFrom"
                     rules={[{ required: true }]}
-                    label="Salary From"
+                    label="Service Charges From"
                   >
                     <Input type="number" />
                   </Form.Item>
@@ -71,7 +71,7 @@ function Post() {
                   <Form.Item
                     name="salaryTo"
                     rules={[{ required: true }]}
-                    label="Salary To"
+                    label="Service Charges To"
                   >
                     <Input type="number" />
                   </Form.Item>
@@ -82,7 +82,7 @@ function Post() {
                   <Form.Item
                     name="skillsRequired"
                     rules={[{ required: true }]}
-                    label="Skills"
+                    label="Specializations"
                   >
                     <Input />
                   </Form.Item>
@@ -91,7 +91,7 @@ function Post() {
                   <Form.Item
                     name="minimumQualification"
                     rules={[{ required: true }]}
-                    label="Minimum Qualification"
+                    label="Qualification"
                   >
                     <Select>
                       <Option value="Degree">Degree</Option>
@@ -122,14 +122,14 @@ function Post() {
               <Button htmlType="submit">Next</Button>
             </Form>
           </TabPane>
-          <TabPane tab="Company Info" key="1">
+          <TabPane tab="Company/Person Info" key="1">
             <Form layout="vertical" onFinish={onFinalFormFinish}>
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
                     name="company"
                     rules={[{ required: true }]}
-                    label="Company Name"
+                    label="Company Name / Individual"
                   >
                     <Input />
                   </Form.Item>
@@ -138,7 +138,7 @@ function Post() {
                   <Form.Item
                     name="email"
                     rules={[{ required: true }]}
-                    label="Company Email"
+                    label="Email"
                   >
                     <Input />
                   </Form.Item>
@@ -157,7 +157,7 @@ function Post() {
                   <Form.Item
                     name="companyDescription"
                     rules={[{ required: true }]}
-                    label="Company Description"
+                    label="Description"
                   >
                     <TextArea rows={5} />
                   </Form.Item>

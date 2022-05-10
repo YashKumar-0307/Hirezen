@@ -31,11 +31,11 @@ function Info() {
         {job && (
           <div>
             <p>
-              <b>Title : </b>
+              <b>Service Name : </b>
               {job.title}
             </p>
             <p>
-              <b>Company : </b>
+              <b>Company/Person Name : </b>
               {job.company}
             </p>
             <p>
@@ -47,32 +47,32 @@ function Info() {
               {job.fullDescription}
             </p>
             <p>
-              <b>Skills Required : </b>
+              <b>Specialization: </b>
               {job.skillsRequired}
             </p>
             <p>
               <b>Experience : </b>
-              {job.experience}
+              {job.experience} Years
             </p>
             <p>
-              <b>Minimum Qualification : </b>
+              <b>Qualification : </b>
               {job.minimumQualification}
             </p>
             <hr />
             <p>
-              <b>Salary Range : </b>
+              <b>Service Charge Range : </b>
               {job.salaryFrom} - {job.salaryTo}
             </p>
             <p>
-              <b>Department : </b>
+              <b>Service Category : </b>
               {job.department}
             </p>
             <p>
-              <b>Company Profile : </b>
+              <b>Service Provider Profile : </b>
               {job.companyDescription}
             </p>
             <p>
-              <b>Total Candidates Applied : </b>
+              <b>Current Booked Service Count : </b>
               {job.appliedCandidates?.length > 0
                 ? job.appliedCandidates.length
                 : 0}
@@ -86,7 +86,7 @@ function Info() {
               ) : alreadyApplied ? (
                 <Tag color="green">Already Applied</Tag>
               ) : (
-                <Button onClick={applyNow}>Apply Now</Button>
+                <Button onClick={applyNow}>Book Now</Button>
               )}
               <p>
                 <b>Posted On : </b>

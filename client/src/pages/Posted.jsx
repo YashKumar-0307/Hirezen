@@ -21,12 +21,12 @@ function Posted() {
       dataIndex: "title",
     },
     {
-      title: "Company",
+      title: "Company/Individual",
       dataIndex: "company",
     },
 
     {
-      title: "Applied Candidates",
+      title: "No. of Booked Services",
       dataIndex: "appliedCandidatesIds",
     },
     {
@@ -96,7 +96,7 @@ function Posted() {
         dataIndex: "fullName",
       },
       {
-        title: "Applied Date",
+        title: "Booked Date",
         dataIndex: "appliedDate",
       },
     ];
@@ -125,7 +125,7 @@ function Posted() {
         <h1>Posted Services</h1>
         <Table columns={columns} dataSource={dataSource} />
         <Modal
-          title="Applied Candidats List"
+          title="Booked Services List"
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
