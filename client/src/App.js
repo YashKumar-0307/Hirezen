@@ -14,6 +14,7 @@ import { getAllJobs } from "./redux/actions/jobsAction";
 import EditJob from "./pages/EditJob";
 import AppliedJobs from "./pages/AppliedJobs";
 import { getAllUsers } from "./redux/actions/userActions";
+import UserInfo from "./pages/UserInfo";
 
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
@@ -59,6 +60,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <EditJob />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users/:id"
+            exact
+            element={
+              <ProtectedRoute>
+                <UserInfo />
               </ProtectedRoute>
             }
           />

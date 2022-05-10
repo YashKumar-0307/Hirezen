@@ -9,7 +9,7 @@ const { TabPane } = Tabs;
 const { TextArea } = Input;
 const { Option } = Select;
 
-function EditJob({ match }) {
+function EditJob() {
   const { id } = useParams();
   const [jobInfo, setJobInfo] = useState({});
   const [activeTab, setActiveTab] = useState("0");

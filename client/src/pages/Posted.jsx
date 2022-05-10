@@ -4,11 +4,11 @@ import DefaultLayout from "../components/DefaultLayout";
 import { Table, Modal } from "antd";
 import moment from "moment";
 import { EditOutlined, OrderedListOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Posted() {
   const alljobs = useSelector((state) => state.jobsReducer).jobs;
-  const allusers = useSelector((state) => state.usersRecuder).users;
+  const allusers = useSelector((state) => state.usersReducer).users;
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   const userPostedJobs = alljobs.filter((job) => job.postedBy == userid);
   const navigate = useNavigate();
@@ -85,6 +85,11 @@ function Posted() {
       {
         title: "Candidate ID",
         dataIndex: "candidateId",
+        render: (text, data) => {
+          return (
+            <Link to={`/users/${data.candidateId}`}>{data.candidateId}</Link>
+          );
+        },
       },
       {
         title: "Full Name",
@@ -122,12 +127,12 @@ function Posted() {
         <Modal
           title="Applied Candidats List"
           visible={isModalVisible}
-          // onOk={handleOk}
-          // onCancel={handleCancel}
+          onOk={handleOk}
+          onCancel={handleCancel}
           width={800}
           closable={false}
         >
-          <CandidatesList/>
+          <CandidatesList />
         </Modal>
       </DefaultLayout>
     </div>
