@@ -53,7 +53,7 @@ export const applyJob = (job) => async (dispatch) => {
   try {
     const response = await axios.post("/api/jobs/applyjob", { job, user });
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
-    message.success("Applied Successfully!!");
+    message.success("Job Applied Successfully!!");
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);

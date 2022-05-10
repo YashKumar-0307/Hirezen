@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-let Jobs = require("../models/jobsSchema.js");
+const Jobs = require("../models/jobsSchema.js");
+const User = require("../models/userSchema.js");
+const moment = require("moment");
 
 router.get("/getalljobs", async (req, res) => {
   try {
@@ -34,36 +36,31 @@ router.post("/editjob", async (req, res) => {
 });
 
 router.post("/applyjob", async (req, res) => {
-  const {user, job}=req.body;
-  try
-  {
-    const jobDetails = await Job.findOne({_id : job._id});
+  const { user, job } = req.body;
+  try {
+    const jobDetails = await Jobs.findOne({ _id: job._id });
 
     const appliedCandidate = {
-      userid : user._id,
-      appliedDate : moment().format('MMM DD yyyy')
-    }
+      userid: user._id,
+      appliedDate: moment().format("MMM DD YYYY"),
+    };
 
     jobDetails.appliedCandidates.push(appliedCandidate);
     await jobDetails.save();
-    
-    const userDetails = await User.findOne({_id : user._id});
+
+    const userDetails = await User.findOne({ _id: user._id });
     const appliedJob = {
-      userid : job._id,
-      appliedDate : moment().format('MMM DD yyyy')
-    }
+      jobid: job._id,
+      appliedDate: moment().format("MMM DD YYYY"),
+    };
     userDetails.appliedJobs.push(appliedJob);
 
-    await UserDetails.save();
+    await userDetails.save();
 
-    res.send('Applied Successfully');
-
-  } 
-  catch(error)
-  {
+    res.send("Job Applied Successfully!!");
+  } catch (error) {
     res.send(error);
   }
 });
-
 
 module.exports = router;
