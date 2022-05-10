@@ -62,3 +62,48 @@ export const applyJob = (job) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: false });
   }
 };
+
+// Search Jobs
+export const searchJobs = (searchKey) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    const response = await axios.get("/api/jobs/getalljobs");
+
+    // Search jobs and show that jobs.
+    const jobs = response.data;
+    const filteredJobs = jobs.filter((job) =>
+      job.title.toLowerCase().includes(searchKey.toLowerCase())
+    );
+
+    dispatch({ type: "GET_ALL_JOBS", payload: filteredJobs });
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
+// Filter and sort Jobs according to filters choosen.
+export const sortJobs = (values) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    const response = await axios.get("/api/jobs/getalljobs");
+
+    // Filter jobs and show that jobs.
+    const jobs = response.data;
+    var filteredJobs = jobs;
+
+    if (values.experience !== undefined) {
+      filteredJobs = jobs.filter((job) => job.experience <= values.experience);
+    }
+    if (values.salary !== undefined) {
+      filteredJobs = jobs.filter((job) => job.salaryTo >= values.salary);
+    }
+
+    dispatch({ type: "GET_ALL_JOBS", payload: filteredJobs });
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};

@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
+import Filter from "./Filter";
 
 const { Header, Sider, Content } = Layout;
 
@@ -33,6 +34,8 @@ class DefaultLayout extends React.Component {
   };
 
   render() {
+    const user = JSON.parse(localStorage.getItem("user"));
+
     return (
       <Layout>
         <Sider
@@ -72,8 +75,12 @@ class DefaultLayout extends React.Component {
             <Menu.Item key="/appliedjob" icon={<PlusSquareOutlined />}>
               <Link to="/appliedjob">Applied Jobs</Link>
             </Menu.Item>
-            <Menu.Item key="/logout" icon={<UploadOutlined />} onClick={this.logout}>
-              <Link to='/login'>Logout</Link>
+            <Menu.Item
+              key="/logout"
+              icon={<UploadOutlined />}
+              onClick={this.logout}
+            >
+              <Link to="/login">Logout</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -88,13 +95,27 @@ class DefaultLayout extends React.Component {
               zIndex: "9999",
             }}
           >
-            {React.createElement(
-              this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: "trigger",
-                onClick: this.toggle,
-              }
-            )}
+            <div className="flex justify-content-between">
+              <div>
+                {React.createElement(
+                  this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                  {
+                    className: "trigger",
+                    onClick: this.toggle,
+                  }
+                )}
+              </div>
+
+              <div>
+                <Filter />
+              </div>
+
+              <div>
+                <h5 className="mr-3">
+                  <b>{user.username}</b>
+                </h5>
+              </div>
+            </div>
           </Header>
           <Content
             className="site-layout-background"

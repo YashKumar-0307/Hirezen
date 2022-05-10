@@ -131,6 +131,7 @@ function Posted() {
           onCancel={handleCancel}
           width={800}
           closable={false}
+          footer={false}
         >
           <CandidatesList />
         </Modal>

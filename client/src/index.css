@@ -256,3 +256,7 @@ input,
 .ant-message {
   z-index: 9999 !important;
 }
+
+.ant-btn {
+  height: 33px !important;
+}
