@@ -21,7 +21,7 @@ function AppliedJobs() {
       var obj = {
         title: job.title,
         company: job.company,
-        appliedDate: job.appliedDate,
+        appliedDate: temp.appliedDate,
       };
 
       userAppliedJobs.push(obj);

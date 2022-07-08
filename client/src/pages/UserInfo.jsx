@@ -39,7 +39,7 @@ function UserInfo() {
             </p>
             <hr />
             <h3>
-              <b>Skills</b>
+              <b>Services Done Till Now.</b>
             </h3>
             {user.skills.map((skill) => {
               return <li>{skill}</li>;
@@ -53,7 +53,7 @@ function UserInfo() {
             })}
             <hr />
             <h3>
-              <b>Projects</b>
+              <b>Buiseness Address</b>
             </h3>
             {user.project.map((project) => {
               return <li>{project}</li>;

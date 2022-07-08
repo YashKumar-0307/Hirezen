@@ -24,15 +24,16 @@ function Posted() {
       title: "Company/Individual",
       dataIndex: "company",
     },
+    {
+      title: "Posted On",
+      dataIndex: "postedOn",
+    },
 
     {
       title: "No. of Booked Services",
       dataIndex: "appliedCandidatesIds",
     },
-    {
-      title: "Posted On",
-      dataIndex: "postedOn",
-    },
+
     {
       title: "Actions",
       render: (text, data) => {
@@ -107,7 +108,7 @@ function Posted() {
       var user = allusers.find((user) => user._id == candidate.userid);
       var obj = {
         candidateId: user._id,
-        fullName: user.firstName + " " + user.lastNane,
+        fullName: user.firstName + " " + user.lastName,
         appliedDate: candidate.appliedDate,
       };
 
