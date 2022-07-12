@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Post from "./pages/Post";
 import Posted from "./pages/Posted";
 import Profile from "./pages/Profile";
+import Contact from "./pages/Contact";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useDispatch, useSelector } from "react-redux";
 import Register from "./pages/Register";
@@ -105,6 +106,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contact"
+            exact
+            element={
+              <ProtectedRoute>
+                <Contact />
               </ProtectedRoute>
             }
           />

@@ -7,6 +7,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
   PlusSquareOutlined,
+  ContactsOutlined,
 } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
@@ -74,6 +75,9 @@ class DefaultLayout extends React.Component {
             </Menu.Item>
             <Menu.Item key="/appliedjob" icon={<PlusSquareOutlined />}>
               <Link to="/appliedjob">Booked Services</Link>
+            </Menu.Item>
+            <Menu.Item key="/contact" icon={<ContactsOutlined />}>
+              <Link to="/contact">Contact Us</Link>
             </Menu.Item>
             <Menu.Item
               key="/logout"

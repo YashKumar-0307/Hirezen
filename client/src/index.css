@@ -126,6 +126,61 @@ button {
   animation: bounce 2s infinite;
 }
 
+.contactPage h2 {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.contact__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.contact__container input,
+.contact__container textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.5rem !important;
+  background: transparent;
+  border: 1.5px solid #001529 !important;
+  resize: none;
+  color: black;
+  transition: all 400ms ease !important;
+}
+
+.contact__container input:hover,
+.contact__container textarea:hover {
+  border: 2px solid #26003b !important;
+}
+
+form button {
+  transition: all 400ms ease !important;
+  border-radius: 0.5rem !important;
+  border-color: transparent !important;
+}
+
+form button:hover {
+  background: transparent !important;
+  color: rgb(8, 17, 47) !important;
+  border: 2px solid rgb(9, 9, 77) !important;
+}
+
+.snackBar {
+  position: flex;
+  top: 4rem !important;
+}
+
 @keyframes bounce {
   0%,
   20%,
