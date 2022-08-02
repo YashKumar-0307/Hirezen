@@ -27,7 +27,7 @@ function Post() {
   return (
     <div>
       <DefaultLayout>
-        <Tabs defaultActiveKey="0" activeKey={activeTab}>
+        <Tabs defaultActiveKey="0" activeKey={activeTab} className="PostTab">
           <TabPane tab="Service Info" key="0">
             <Form layout="vertical" onFinish={onFirstFormFinish}>
               <Row gutter={16}>

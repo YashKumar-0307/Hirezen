@@ -62,7 +62,7 @@ function Login() {
             <Col
               lg={10}
               sm={24}
-              className="bs"
+              className="bs loginForm"
               style={{
                 boxShadow: "0 0 1rem 0 rgba(0, 0, 0, 1)",
                 backgroundColor: "rgba(255,255,255,.5)",
@@ -92,6 +92,7 @@ function Login() {
                   rules={[{ required: true }]}
                 >
                   <Input
+                    type="password"
                     style={{
                       backgroundColor: "rgba(255,255,255,.5)",
                       borderRadius: "1%",

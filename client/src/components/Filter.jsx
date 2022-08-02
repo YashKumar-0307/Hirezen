@@ -44,8 +44,17 @@ function Filter() {
         onCancel={handleCancel}
         closable={false}
       >
-        <Form layout="vertical" onFinish={sort}>
-          <Form.Item name="experience" label="Experience">
+        <Form
+          layout="vertical"
+          onFinish={sort}
+          className="FilterTab"
+          style={{ width: "30rem" }}
+        >
+          <Form.Item
+            name="experience"
+            label="Experience"
+            style={{ width: "30vw" }}
+          >
             <Select>
               <Option value={0}>New</Option>
               <Option value={1}>1 Year</Option>
@@ -55,7 +64,11 @@ function Filter() {
               <Option value={5}>5 Years</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="salary" label="Service Charges">
+          <Form.Item
+            name="salary"
+            label="Service Charges"
+            style={{ width: "30vw" }}
+          >
             <Select>
               <Option value={200}>200</Option>
               <Option value={350}>350</Option>

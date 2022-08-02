@@ -34,12 +34,12 @@ function Register() {
             <Col
               lg={12}
               sm={24}
-              className="bs"
+              className="bs registerForm"
               style={{
                 backgroundColor: "rgba(255,255,255,.5)",
                 borderRadius: "1%",
                 left: "-12rem",
-                top: "1rem"
+                top: "1rem",
               }}
             >
               <h1>Register</h1>
@@ -64,6 +64,7 @@ function Register() {
                   rules={[{ required: true }]}
                 >
                   <Input
+                    type="password"
                     style={{
                       backgroundColor: "rgba(255,255,255,.5)",
                       borderRadius: "1%",
@@ -76,13 +77,16 @@ function Register() {
                   rules={[{ required: true }]}
                 >
                   <Input
+                    type="password"
                     style={{
                       backgroundColor: "rgba(255,255,255,.5)",
                       borderRadius: "1%",
                     }}
                   />
                 </Form.Item>
-                <Button htmlType="submit" className="mb-3">Register</Button>
+                <Button htmlType="submit" className="mb-3">
+                  Register
+                </Button>
               </Form>
               <a
                 className="loginATag"

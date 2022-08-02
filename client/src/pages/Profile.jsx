@@ -28,7 +28,7 @@ function Profile() {
   return (
     <div>
       <DefaultLayout>
-        <Tabs defaultActiveKey="1" activeKey={activeTab}>
+        <Tabs defaultActiveKey="1" activeKey={activeTab} className="ProfileTab">
           <TabPane tab="Personal Information" key="1">
             <Form
               layout="vertical"
@@ -133,6 +133,7 @@ function Profile() {
                               <TextArea rows={4} />
                             </Form.Item>
                             <Button
+                              className="AddMoreButton"
                               onClick={() => {
                                 add();
                               }}
@@ -141,6 +142,7 @@ function Profile() {
                             </Button>
                             {index !== 0 && (
                               <Button
+                                className="DeleteButton"
                                 onClick={() => {
                                   remove(index);
                                 }}
@@ -170,6 +172,7 @@ function Profile() {
                               <TextArea rows={4} />
                             </Form.Item>
                             <Button
+                              className="AddMoreButton"
                               onClick={() => {
                                 add();
                               }}
@@ -178,6 +181,7 @@ function Profile() {
                             </Button>
                             {index !== 0 && (
                               <Button
+                                className="DeleteButton"
                                 onClick={() => {
                                   remove(index);
                                 }}
@@ -207,6 +211,7 @@ function Profile() {
                               <TextArea rows={4} />
                             </Form.Item>
                             <Button
+                              className="AddMoreButton"
                               onClick={() => {
                                 add();
                               }}
@@ -215,6 +220,7 @@ function Profile() {
                             </Button>
                             {index !== 0 && (
                               <Button
+                                className="DeleteButton"
                                 onClick={() => {
                                   remove(index);
                                 }}
@@ -244,6 +250,7 @@ function Profile() {
                               <TextArea rows={4} />
                             </Form.Item>
                             <Button
+                              className="AddMoreButton"
                               onClick={() => {
                                 add();
                               }}
@@ -252,6 +259,7 @@ function Profile() {
                             </Button>
                             {index !== 0 && (
                               <Button
+                                className="DeleteButton"
                                 onClick={() => {
                                   remove(index);
                                 }}

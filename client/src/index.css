@@ -315,3 +315,40 @@ input,
 .ant-btn {
   height: 33px !important;
 }
+
+.registerForm Input {
+  width: 30vw !important;
+  margin-right: -170px !important;
+}
+
+.registerForm Button {
+  left: 5rem;
+}
+
+
+.loginForm Input {
+  width: 30vw !important;
+  margin-right: -170px !important;
+}
+
+.loginForm Button {
+  left: 5rem;
+}
+
+.ProfileTab Form {
+  width: 80vw !important;
+}
+
+.AddMoreButton {
+  margin: auto;
+}
+
+.DeleteButton {
+  margin: auto;
+}
+
+.FilterTab Select {
+  position: absolute;
+  width: 80% !important;
+}
+
