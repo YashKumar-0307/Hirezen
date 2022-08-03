@@ -14,9 +14,37 @@ export const getAllJobs = () => async (dispatch) => {
   }
 };
 
+export const getAppliedJobs = () => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const response = await axios.get(`/api/jobs/getappliedjobs?id=${user._id}`);
+    // console.log(response);
+    dispatch({ type: "GET_APPLIED_JOBS", payload: response.data });
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
+export const getPostedJobs = () => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const response = await axios.get(`/api/jobs/getpostedjobs?id=${user._id}`);
+    // console.log(response);
+    dispatch({ type: "GET_POSTED_JOBS", payload: response.data });
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
 export const postJob = (values) => async (dispatch) => {
   values.postedBy = JSON.parse(localStorage.getItem("user"))._id;
-
+  //{_id: id}
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
   try {
     const response = await axios.post("/api/jobs/postjob", values);

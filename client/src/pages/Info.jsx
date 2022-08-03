@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllJobs, getAppliedJobs } from "../redux/actions/jobsAction";
 import { Button, Tag } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -10,16 +11,24 @@ import { applyJob } from "../redux/actions/jobsAction";
 function Info() {
   const { id } = useParams();
   const { jobs } = useSelector((state) => state.jobsReducer);
+  const { app } = useSelector((state) => state.appliedReducer);
   const job = jobs.find((job) => job._id == id);
 
-  console.log(job);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAppliedJobs());
+  }, []);
+
+  //console.log(job);
 
   const userid = JSON.parse(localStorage.getItem("user"))._id;
-  const appliedCandidates = job.appliedCandidates;
-  const alreadyApplied = appliedCandidates.find(
-    (candidate) => candidate.userid == userid
+  //const appliedCandidates = job.appliedCandidates;
+  const alreadyApplied = app.find(
+    (candidate) => candidate.jobid == job._id && candidate.userid == userid
   );
-  const dispatch = useDispatch();
+  console.log(alreadyApplied);
+
 
   function applyNow() {
     dispatch(applyJob(job));
@@ -71,12 +80,12 @@ function Info() {
               <b>Service Provider Profile : </b>
               {job.companyDescription}
             </p>
-            <p>
+            {/* <p>
               <b>Current Booked Service Count : </b>
               {job.appliedCandidates?.length > 0
                 ? job.appliedCandidates.length
                 : 0}
-            </p>
+            </p> */}
             <hr />
             <div className="flex justify-content-between">
               {job.postedBy == userid ? (

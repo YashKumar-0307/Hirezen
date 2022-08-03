@@ -1,5 +1,6 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { getAllJobs, getAppliedJobs } from "../redux/actions/jobsAction";
 import DefaultLayout from "../components/DefaultLayout";
 import { Table } from "antd";
 import moment from "moment";
@@ -7,27 +8,29 @@ import { EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 function AppliedJobs() {
-  const { jobs } = useSelector((state) => state.jobsReducer);
+  const { app } = useSelector((state) => state.appliedReducer);
+  
   const user = JSON.parse(localStorage.getItem("user"));
   const userAppliedJobs = [];
+  // console.log(app);
+  const dispatch = useDispatch();
 
-  for (var job of jobs) {
-    var appliedCandidates = job.appliedCandidates;
-    var temp = appliedCandidates.find(
-      (candidate) => candidate.userid == user._id
-    );
+  useEffect(() => {
+    dispatch(getAppliedJobs());
+  }, []);
+for (var job of app) {
 
-    if (temp) {
-      var obj = {
-        title: job.title,
-        company: job.company,
-        appliedDate: temp.appliedDate,
-      };
+    var obj = {
+      title: job.title,
+      company: job.company,
+      appliedDate: job.appliedDate,
+    };
 
-      userAppliedJobs.push(obj);
-    }
-  }
+    userAppliedJobs.push(obj);
 
+}
+
+  
   const columns = [
     {
       title: "Service Title",
