@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllJobs, getAppliedJobs } from "../redux/actions/jobsAction";
 import DefaultLayout from "../components/DefaultLayout";
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function AppliedJobs() {
   const { app } = useSelector((state) => state.appliedReducer);
-  
+
   const user = JSON.parse(localStorage.getItem("user"));
   const userAppliedJobs = [];
   // console.log(app);
@@ -18,8 +18,7 @@ function AppliedJobs() {
   useEffect(() => {
     dispatch(getAppliedJobs());
   }, []);
-for (var job of app) {
-
+  for (var job of app) {
     var obj = {
       title: job.title,
       company: job.company,
@@ -27,10 +26,8 @@ for (var job of app) {
     };
 
     userAppliedJobs.push(obj);
+  }
 
-}
-
-  
   const columns = [
     {
       title: "Service Title",

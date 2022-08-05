@@ -29,7 +29,6 @@ function Info() {
   );
   console.log(alreadyApplied);
 
-
   function applyNow() {
     dispatch(applyJob(job));
   }
@@ -70,7 +69,8 @@ function Info() {
             <hr />
             <p>
               <b>Service Charge Range : </b>
-              {job.salaryFrom} - {job.salaryTo}
+              {job.salaryFrom} - {job.salaryTo}{" "}
+              <i>(Depends on kind of service and work required.)</i>
             </p>
             <p>
               <b>Service Category : </b>
@@ -93,7 +93,7 @@ function Info() {
                   <Link to={`/editjob/${job._id}`}>Edit Now</Link>
                 </Button>
               ) : alreadyApplied ? (
-                <Tag color="green">Already Applied</Tag>
+                <Tag color="green">Already Booked</Tag>
               ) : (
                 <Button onClick={applyNow}>Book Now</Button>
               )}

@@ -73,7 +73,7 @@ function Filter() {
               <Option value={200}>200</Option>
               <Option value={350}>350</Option>
               <Option value={500}>500</Option>
-              <Option value={700}>750</Option>
+              <Option value={750}>750</Option>
               <Option value={1000}>1000</Option>
               <Option value={3000}>3000</Option>
             </Select>

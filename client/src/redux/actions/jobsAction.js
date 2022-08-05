@@ -49,7 +49,7 @@ export const postJob = (values) => async (dispatch) => {
   try {
     const response = await axios.post("/api/jobs/postjob", values);
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
-    message.success("Job Posted Successfully!!");
+    message.success("Service Posted Successfully!!");
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
@@ -64,7 +64,7 @@ export const editJob = (values) => async (dispatch) => {
   try {
     const response = await axios.post("/api/jobs/editjob", values);
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
-    message.success("Job Updated Successfully!!");
+    message.success("Service Updated Successfully!!");
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
@@ -81,7 +81,7 @@ export const applyJob = (job) => async (dispatch) => {
   try {
     const response = await axios.post("/api/jobs/applyjob", { job, user });
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
-    message.success("Job Applied Successfully!!");
+    message.success("Service Booked Successfully!!");
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
@@ -125,7 +125,10 @@ export const sortJobs = (values) => async (dispatch) => {
       filteredJobs = jobs.filter((job) => job.experience <= values.experience);
     }
     if (values.salary !== undefined) {
-      filteredJobs = jobs.filter((job) => job.salaryTo >= values.salary);
+      filteredJobs = jobs.filter(
+        (job) =>
+          job.salaryTo >= values.salary && job.salaryFrom <= values.salary
+      );
     }
 
     dispatch({ type: "GET_ALL_JOBS", payload: filteredJobs });

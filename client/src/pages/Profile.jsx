@@ -76,7 +76,7 @@ function Profile() {
                     <Input />
                   </Form.Item>
                 </Col>
-                <Col lg={8} sm={24}>
+                {/* <Col lg={8} sm={24}>
                   <Form.Item
                     label="Portfolio"
                     required
@@ -85,7 +85,7 @@ function Profile() {
                   >
                     <Input />
                   </Form.Item>
-                </Col>
+                </Col> */}
                 <Col lg={24} sm={24}>
                   <Form.Item
                     label="About"
@@ -166,7 +166,7 @@ function Profile() {
                               required
                               rules={[{ required: true }]}
                               {...field}
-                              label="Services Done Till Now"
+                              label="Services Done Till Now (If Any)"
                               style={{ width: "80%" }}
                             >
                               <TextArea rows={4} />
@@ -205,7 +205,7 @@ function Profile() {
                               required
                               rules={[{ required: true }]}
                               {...field}
-                              label="Business Address"
+                              label="Business Address (If Exists)"
                               style={{ width: "80%" }}
                             >
                               <TextArea rows={4} />

@@ -14,8 +14,7 @@ app.use(cors());
 
 async function dbconnect() {
   try {
-    const uri =
-      "mongodb+srv://hirezen:gpsygpsy@cluster0.ktnki.mongodb.net/hirezen";
+    const uri = "";
     mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

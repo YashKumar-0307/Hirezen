@@ -16,7 +16,7 @@ router.get("/getalljobs", async (req, res) => {
 
 router.get("/getappliedjobs", async (req, res) => {
   try {
-    const jo = await Applied.find({userid: req.query.id});
+    const jo = await Applied.find({ userid: req.query.id });
     // console.log(jo);
     res.send(jo);
   } catch (error) {
@@ -26,7 +26,7 @@ router.get("/getappliedjobs", async (req, res) => {
 
 router.get("/getpostedjobs", async (req, res) => {
   try {
-    const jo = await Applied.find({postedby: req.query.id});
+    const jo = await Applied.find({ postedby: req.query.id });
     console.log(jo);
     res.send(jo);
   } catch (error) {
@@ -38,7 +38,7 @@ router.post("/postjob", async (req, res) => {
   try {
     const newjob = new Jobs(req.body);
     await newjob.save();
-    res.send("Job Posted Successfully!!");
+    res.send("Service Posted Successfully!!");
   } catch (error) {
     return res.status(400).json({ error });
   }
@@ -51,9 +51,12 @@ router.post("/editjob", async (req, res) => {
       req.body
     );
 
-    const updatedApplied = await Applied.updateMany({jobid: req.body._id}, {company:req.body.company ,title:req.body.title });
+    const updatedApplied = await Applied.updateMany(
+      { jobid: req.body._id },
+      { company: req.body.company, title: req.body.title }
+    );
 
-    res.send("Job Updated Successfully!!");
+    res.send("Service Updated Successfully!!");
   } catch (error) {
     return res.status(400).json({ error });
   }
@@ -71,7 +74,7 @@ router.post("/applyjob", async (req, res) => {
 
     // jobDetails.appliedCandidates.push(appliedCandidate);
     // await jobDetails.save();
-    var dat=new Date();
+    var dat = new Date();
     console.log(user);
     console.log(job);
 
@@ -81,7 +84,7 @@ router.post("/applyjob", async (req, res) => {
       title: job.title,
       company: job.company,
       postedby: job.postedBy,
-      appliedDate: dat
+      appliedDate: dat,
     });
     // console.log("Created");
     await newapplied.save();
@@ -95,7 +98,7 @@ router.post("/applyjob", async (req, res) => {
 
     await userDetails.save();
 
-    res.send("Job Applied Successfully!!");
+    res.send("Service Booked Successfully!!");
   } catch (error) {
     res.send(error);
   }
