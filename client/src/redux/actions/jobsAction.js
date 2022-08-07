@@ -42,6 +42,7 @@ export const getPostedJobs = () => async (dispatch) => {
   }
 };
 
+// Post your new Service
 export const postJob = (values) => async (dispatch) => {
   values.postedBy = JSON.parse(localStorage.getItem("user"))._id;
   //{_id: id}
@@ -59,6 +60,7 @@ export const postJob = (values) => async (dispatch) => {
   }
 };
 
+// Edit your already posted Service
 export const editJob = (values) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
   try {
@@ -74,6 +76,23 @@ export const editJob = (values) => async (dispatch) => {
   }
 };
 
+// Delete posted Service
+export const deleteJob = (values) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    const response = await axios.post("/api/jobs/editjob", values);
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+    message.success("Service Deleted Successfully!!");
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000);
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
+// Book your Service
 export const applyJob = (job) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -91,7 +110,25 @@ export const applyJob = (job) => async (dispatch) => {
   }
 };
 
-// Search Jobs
+// Cancel your booked Service
+export const cancelJob = (job) => async (dispatch) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    const response = await axios.post("/api/jobs/applyjob", { job, user });
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+    message.success("Booking Cancelled Successfully!!");
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000);
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
+// Search Services
 export const searchJobs = (searchKey) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
   try {

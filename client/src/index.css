@@ -176,6 +176,24 @@ form button:hover {
   border: 2px solid rgb(9, 9, 77) !important;
 }
 
+/* .cancelBookingBtn {
+  color: maroon !important;
+  background-color: rgb(224, 131, 162) !important;
+  border: 1px solid maroon !important;
+  padding: 0.4rem !important;
+  padding-top: 0.05rem !important;
+  padding-bottom: 0.05rem !important;
+  left: 150% !important;
+  right: 100% !important;
+} */
+
+.cancelBookingBtn:hover {
+  color: white !important;
+  background-color: rgb(168, 11, 11) !important;
+  border: 1px solid maroon !important;
+  cursor: pointer !important;
+}
+
 .snackBar {
   position: flex;
   top: 4rem !important;
@@ -325,7 +343,6 @@ input,
   left: 5rem;
 }
 
-
 .loginForm Input {
   width: 30vw !important;
   margin-right: -170px !important;
@@ -351,4 +368,3 @@ input,
   position: absolute;
   width: 80% !important;
 }
-

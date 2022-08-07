@@ -6,7 +6,7 @@ import { getAllJobs, getAppliedJobs } from "../redux/actions/jobsAction";
 import { Button, Tag } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { applyJob } from "../redux/actions/jobsAction";
+import { applyJob, deleteJob, cancelJob } from "../redux/actions/jobsAction";
 
 function Info() {
   const { id } = useParams();
@@ -31,6 +31,14 @@ function Info() {
 
   function applyNow() {
     dispatch(applyJob(job));
+  }
+
+  function deleteService() {
+    dispatch(deleteJob(job));
+  }
+
+  function cancelBookedService() {
+    dispatch(cancelJob(job));
   }
 
   return (
@@ -89,11 +97,23 @@ function Info() {
             <hr />
             <div className="flex justify-content-between">
               {job.postedBy == userid ? (
-                <Button>
-                  <Link to={`/editjob/${job._id}`}>Edit Now</Link>
-                </Button>
+                <div>
+                  <Button style={{ marginRight: "1rem" }}>
+                    <Link to={`/editjob/${job._id}`}>Edit Service</Link>
+                  </Button>
+                  <Button onClick={deleteService}>Delete Service</Button>
+                </div>
               ) : alreadyApplied ? (
-                <Tag color="green">Already Booked</Tag>
+                <div>
+                  <Tag color="green">Already Booked</Tag>
+                    <Tag
+                      color="red"
+                    className="cancelBookingBtn"
+                    onClick={cancelBookedService}
+                  >
+                    Cancel Booking
+                  </Tag>
+                </div>
               ) : (
                 <Button onClick={applyNow}>Book Now</Button>
               )}
