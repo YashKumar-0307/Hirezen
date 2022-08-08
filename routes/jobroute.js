@@ -27,7 +27,7 @@ router.get("/getappliedjobs", async (req, res) => {
 router.get("/getpostedjobs", async (req, res) => {
   try {
     const jo = await Applied.find({ postedby: req.query.id });
-    console.log(jo);
+    //console.log(jo);
     res.send(jo);
   } catch (error) {
     return res.status(400).json({ error });
@@ -75,8 +75,8 @@ router.post("/applyjob", async (req, res) => {
     // jobDetails.appliedCandidates.push(appliedCandidate);
     // await jobDetails.save();
     var dat = new Date();
-    console.log(user);
-    console.log(job);
+    // console.log(user);
+    // console.log(job);
 
     const newapplied = new Applied({
       jobid: job._id,
@@ -101,6 +101,18 @@ router.post("/applyjob", async (req, res) => {
     res.send("Service Booked Successfully!!");
   } catch (error) {
     res.send(error);
+  }
+});
+
+router.post("/deletejob", async (req, res) => {
+  try {
+    var jo=req.body._id;
+    const delApplied = await Applied.deleteMany( { jobid : jo } );
+    const delJob = await Jobs.deleteMany( { _id : jo } );
+    console.log(jo);
+    res.send("Service Deleted Successfully!!");
+  } catch (error) {
+    return res.status(400).json({ error });
   }
 });
 

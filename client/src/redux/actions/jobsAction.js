@@ -80,7 +80,7 @@ export const editJob = (values) => async (dispatch) => {
 export const deleteJob = (values) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
   try {
-    const response = await axios.post("/api/jobs/editjob", values);
+    const response = await axios.post("/api/jobs/deletejob", values);
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
     message.success("Service Deleted Successfully!!");
     setTimeout(() => {
