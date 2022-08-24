@@ -1,8 +1,11 @@
 # Hirezen
 
 > *Home services are becoming one of the rising millennial industries born out of the boom of internet in India and across other international countries. They provide services at home so that a customer does not have to venture outside to find a suitable service person. Over the last few years, we have seen the rise of companies like Urban Company and Just Dial become a household name for people living in cities like Delhi, Mumbai etc for delivering authentic and affordable services at home.*
+> <br/>
 > *As great as these services are, they are limited to Tier 1 cities of India leaving a void for all of the customers and service providers of Tier 2 and Tier 3 cities. This puts this section of customers having troubles finding an appropriate home servicing solution. Furthermore, this restricts the service providers from a much larger customer base in a positively competitive order. To make benefit of this massive untapped potential, we investigate the reasons for why companies haven’t tapped in such a market and also analyze the needs and requirements for such a solution. Following this, we also propose a solution for the above matter in the form of Hirezen, a deep learning powered MERN stack web app which acts as a standardized platform for both customers and service providers.*
+> <br/>
 > *This project will help us in providing a one stop solution for residents of such cities in providing and availing of home services with features like keyword sorting, sorting based on reviews and ratings, AI driven recommendation system and email support system. All of the latest web development tools and deep learning techniques have been used to provide a quick and fast platform that can be accessed on any device anytime.*
+<br/>
 <br/>
 
 ![image](https://user-images.githubusercontent.com/71596140/186368776-97ee5234-e2d0-4cd7-9cdd-77473154d943.png)
