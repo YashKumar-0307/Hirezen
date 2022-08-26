@@ -183,9 +183,9 @@ function EditJob() {
                   setActiveTab("0");
                 }}
               >
-                Previous
+                Previous Page
               </Button>
-              <Button htmlType="submit">Edit Job</Button>
+              <Button htmlType="submit">Edit Service</Button>
             </Form>
           </TabPane>
         </Tabs>

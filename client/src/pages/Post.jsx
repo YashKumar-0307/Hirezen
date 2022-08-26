@@ -168,9 +168,9 @@ function Post() {
                   setActiveTab("0");
                 }}
               >
-                Previous
+                Previous Page
               </Button>
-              <Button htmlType="submit">Post Job</Button>
+              <Button htmlType="submit">Post Service</Button>
             </Form>
           </TabPane>
         </Tabs>
