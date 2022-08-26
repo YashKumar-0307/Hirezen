@@ -280,9 +280,9 @@ function Profile() {
                   setActiveTab("1");
                 }}
               >
-                Previous
+                Previous Page
               </Button>
-              <Button htmlType="submit">Update</Button>
+              <Button htmlType="submit">Update Profile</Button>
             </Form>
           </TabPane>
         </Tabs>

@@ -159,7 +159,7 @@ export const sortJobs = (values) => async (dispatch) => {
     var filteredJobs = jobs;
 
     if (values.experience !== undefined) {
-      filteredJobs = jobs.filter((job) => job.experience <= values.experience);
+      filteredJobs = jobs.filter((job) => job.experience == values.experience);
     }
     if (values.salary !== undefined) {
       filteredJobs = jobs.filter(
