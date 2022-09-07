@@ -33,6 +33,7 @@ dbconnect();
 app.use("/api/jobs/", jobsroute);
 app.use("/api/users/", userroute);
 
+app.use(express.static("client/build"));
 app.get("*", (req,res) => 
 {
     res.sendFile(path.join(__dirname,"client","build", 'index.html'));
