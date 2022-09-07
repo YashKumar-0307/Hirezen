@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require('path');
 const app = express();
 const mongoose = require("mongoose");
 const jobsroute = require("./routes/jobroute.js");
@@ -14,7 +15,7 @@ app.use(cors());
 
 async function dbconnect() {
   try {
-    const uri = process.env.MongoURL ||  "";
+    const uri = process.env.MongoURL ||  "mongodb+srv://hirezen:gpsygpsy@cluster0.ktnki.mongodb.net/hirezen";
     mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

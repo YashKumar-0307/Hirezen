@@ -16,6 +16,7 @@
     "moment": "^2.29.3",
     "mongoose": "^5.13.7",
     "nodemon": "^1.12.7",
+    "path": "^0.12.7",
     "react-router-dom": "^6.3.0"
   }
 }
