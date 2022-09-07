@@ -109,8 +109,33 @@ router.post("/deletejob", async (req, res) => {
     var jo=req.body._id;
     const delApplied = await Applied.deleteMany( { jobid : jo } );
     const delJob = await Jobs.deleteMany( { _id : jo } );
-    console.log(jo);
+    //console.log(jo);
     res.send("Service Deleted Successfully!!");
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+router.post("/canceljob", async (req, res) => {
+  try {
+    const { user, job } = req.body;
+    //console.log(req.body);
+    var jo=job;
+    var datee=job.appliedDate;
+    //console.log(typeof(datee));
+   // const delApplied = await Applied.find( { jobid : jo._id, userid: user._id } );
+    Applied.findByIdAndRemove(jo._id,(err)=>{
+      if(err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        res.send("Service Cancelled Successfully!!");
+      }
+    });
+    //console.log(jo._id+" "+user._id); 
+    res.send("Service Cancelled Successfully!!");
   } catch (error) {
     return res.status(400).json({ error });
   }

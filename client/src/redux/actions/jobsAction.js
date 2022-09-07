@@ -113,10 +113,9 @@ export const applyJob = (job) => async (dispatch) => {
 // Cancel your booked Service
 export const cancelJob = (job) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem("user"));
-
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
   try {
-    const response = await axios.post("/api/jobs/applyjob", { job, user });
+    const response = await axios.post("/api/jobs/canceljob",{job,user});
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
     message.success("Booking Cancelled Successfully!!");
     setTimeout(() => {
@@ -159,7 +158,7 @@ export const sortJobs = (values) => async (dispatch) => {
     var filteredJobs = jobs;
 
     if (values.experience !== undefined) {
-      filteredJobs = jobs.filter((job) => job.experience == values.experience);
+      filteredJobs = jobs.filter((job) => job.experience <= values.experience);
     }
     if (values.salary !== undefined) {
       filteredJobs = jobs.filter(

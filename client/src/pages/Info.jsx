@@ -20,14 +20,14 @@ function Info() {
     dispatch(getAppliedJobs());
   }, []);
 
-  //console.log(job);
+  console.log(job);
 
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   //const appliedCandidates = job.appliedCandidates;
   const alreadyApplied = app.find(
     (candidate) => candidate.jobid == job._id && candidate.userid == userid
   );
-  console.log(alreadyApplied);
+  //console.log(alreadyApplied);
 
   function applyNow() {
     dispatch(applyJob(job));
@@ -38,7 +38,7 @@ function Info() {
   }
 
   function cancelBookedService() {
-    dispatch(cancelJob(job));
+    dispatch(cancelJob(alreadyApplied));
   }
 
   return (
