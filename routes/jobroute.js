@@ -135,7 +135,7 @@ router.post("/canceljob", async (req, res) => {
       }
     });
     //console.log(jo._id+" "+user._id); 
-    res.send("Service Cancelled Successfully!!");
+    //res.send("Service Cancelled Successfully!!");
   } catch (error) {
     return res.status(400).json({ error });
   }
