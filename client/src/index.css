@@ -326,6 +326,22 @@ input,
   border: 1px solid !important;
 }
 
+input,
+.bookingSlot {
+  padding: 0.2rem !important;
+  padding-left: 0.5rem !important;
+}
+
+.bookDateRange,
+.timeRange {
+  border: 2px solid rgb(23, 23, 128) !important;
+}
+
+/* .bookingFlex {
+  display: flex !important;
+  align-items: stretch !important;
+} */
+
 .ant-message {
   z-index: 9999 !important;
 }

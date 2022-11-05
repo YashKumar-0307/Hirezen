@@ -7,12 +7,32 @@ import { Button, Tag } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { applyJob, deleteJob, cancelJob } from "../redux/actions/jobsAction";
+import { DatePicker, Space, TimePicker } from "antd";
 
 function Info() {
   const { id } = useParams();
   const { jobs } = useSelector((state) => state.jobsReducer);
   const { app } = useSelector((state) => state.appliedReducer);
   const job = jobs.find((job) => job._id == id);
+  const { RangePicker } = DatePicker;
+  const [dates, setDates] = useState(null);
+  const [value, setValue] = useState(null);
+  const [timeValue, setTimeValue] = useState(null);
+  const disabledDate = (current) => {
+    if (!dates) {
+      return false;
+    }
+    const tooLate = dates[0] && current.diff(dates[0], "days") > 7;
+    const tooEarly = dates[1] && dates[1].diff(current, "days") > 7;
+    return !!tooEarly || !!tooLate;
+  };
+  const onOpenChange = (open) => {
+    if (open) {
+      setDates([null, null]);
+    } else {
+      setDates(null);
+    }
+  };
 
   const dispatch = useDispatch();
 
@@ -30,7 +50,9 @@ function Info() {
   //console.log(alreadyApplied);
 
   function applyNow() {
-    dispatch(applyJob(job));
+    if (value && timeValue) {
+      dispatch(applyJob(job));
+    }
   }
 
   function deleteService() {
@@ -106,8 +128,8 @@ function Info() {
               ) : alreadyApplied ? (
                 <div>
                   <Tag color="green">Already Booked</Tag>
-                    <Tag
-                      color="red"
+                  <Tag
+                    color="red"
                     className="cancelBookingBtn"
                     onClick={cancelBookedService}
                   >
@@ -115,7 +137,38 @@ function Info() {
                   </Tag>
                 </div>
               ) : (
-                <Button onClick={applyNow}>Book Now</Button>
+                <div className="bookingFlex">
+                  <Space
+                    className="bookingSlot"
+                    direction="vertical"
+                    size={12}
+                    style={{ marginRight: "2rem" }}
+                  >
+                    <RangePicker
+                      className="bookDateRange"
+                      value={dates || value}
+                      disabledDate={disabledDate}
+                      onCalendarChange={(val) => setDates(val)}
+                      onChange={(val) => setValue(val)}
+                      onOpenChange={onOpenChange}
+                      style={{ padding: "0.5rem" }}
+                    />
+                  </Space>
+                  <Space
+                    className="bookingSlot"
+                    direction="vertical"
+                    size={12}
+                    style={{ marginRight: "2rem" }}
+                  >
+                    <TimePicker.RangePicker
+                      className="timeRange"
+                      value={timeValue}
+                      onChange={(val) => setTimeValue(val)}
+                      style={{ padding: "0.5rem" }}
+                    />
+                  </Space>
+                  <Button onClick={applyNow}>Book Your Slot</Button>
+                </div>
               )}
               <p>
                 <b>Posted On : </b>

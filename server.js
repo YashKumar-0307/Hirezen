@@ -14,8 +14,7 @@ app.use(cors());
 
 async function dbconnect() {
   try {
-    const uri =
-      "";
+    const uri = "";
     mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -38,9 +37,8 @@ app.get("/", (req, res) => {
   res.send("Server Running");
 });
 
-app.get("*", (req,res) => 
-{
-    res.sendFile(path.join(__dirname,"client","build", 'index.html'));
-})
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));

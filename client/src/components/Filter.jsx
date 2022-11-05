@@ -30,7 +30,7 @@ function Filter() {
 
   return (
     <div className="flex">
-      <Search
+      <Search className="searchBar"
         onSearch={(value) => {
           dispatch(searchJobs(value));
         }}
