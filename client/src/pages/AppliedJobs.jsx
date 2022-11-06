@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllJobs, getAppliedJobs } from "../redux/actions/jobsAction";
 import DefaultLayout from "../components/DefaultLayout";
 import { Table } from "antd";
 import moment from "moment";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, StarOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import RatingReview from "../components/RatingReview";
 
 function AppliedJobs() {
   const { app } = useSelector((state) => state.appliedReducer);
@@ -23,6 +24,7 @@ function AppliedJobs() {
       title: job.title,
       company: job.company,
       appliedDate: job.appliedDate,
+      feedback: "Give your feedback",
     };
 
     userAppliedJobs.push(obj);
@@ -40,6 +42,12 @@ function AppliedJobs() {
     {
       title: "Booked Date",
       dataIndex: "appliedDate",
+    },
+    {
+      title: "Give Feedback",
+      render() {
+        return <RatingReview />;
+      },
     },
   ];
 

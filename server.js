@@ -14,7 +14,8 @@ app.use(cors());
 
 async function dbconnect() {
   try {
-    const uri = "";
+    const uri =
+      "";
     mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

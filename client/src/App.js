@@ -8,7 +8,7 @@ import Post from "./pages/Post";
 import Posted from "./pages/Posted";
 import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
-import MoonLoader from "react-spinners/MoonLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 import { useDispatch, useSelector } from "react-redux";
 import Register from "./pages/Register";
 import { getAllJobs } from "./redux/actions/jobsAction";
@@ -30,7 +30,7 @@ function App() {
     <div className="App">
       {loader && (
         <div className="sweet-loading text-center">
-          <MoonLoader color={"#36D7B7"} />
+          <FadeLoader color={"#36D7B7"} />
         </div>
       )}
 

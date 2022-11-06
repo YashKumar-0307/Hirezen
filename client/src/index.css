@@ -384,3 +384,10 @@ input,
   position: absolute;
   width: 80% !important;
 }
+
+.rating-review {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  align-items: center;
+}
