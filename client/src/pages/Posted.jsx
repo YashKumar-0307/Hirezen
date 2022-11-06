@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import { getPostedJobs } from "../redux/actions/jobsAction";
@@ -7,25 +7,21 @@ import moment from "moment";
 import { EditOutlined, OrderedListOutlined } from "@ant-design/icons";
 import { useNavigate, Link } from "react-router-dom";
 
-function count(id,records) {
-  var count=0;
-  for(var rec in records)
-  {
-    if(records[rec].jobid == id)
-    {
-      count=count+1;
+function count(id, records) {
+  var count = 0;
+  for (var rec in records) {
+    if (records[rec].jobid == id) {
+      count = count + 1;
     }
   }
   return count;
 }
 
-function fillter(id,records) {
-  var count=[];
+function fillter(id, records) {
+  var count = [];
   console.log(records);
-  for(var rec in records)
-  {
-    if(records[rec].jobid == id)
-    {
+  for (var rec in records) {
+    if (records[rec].jobid == id) {
       count.push(records[rec]);
     }
   }
@@ -94,7 +90,7 @@ function Posted() {
     var obj = {
       title: job.title,
       company: job.company,
-      appliedCandidatesIds: count(job._id,posted),
+      appliedCandidatesIds: count(job._id, posted),
       postedOn: moment(job.createdAt).format("MMM-DD-YYYY"),
       completeJobData: job,
     };
@@ -133,17 +129,22 @@ function Posted() {
         title: "Booked Date",
         dataIndex: "appliedDate",
       },
+      {
+        title: "Booked Slot",
+        dataIndex: "bookedSlot",
+      },
     ];
 
     var candidatesDataSource = [];
     console.log(selectedJob);
-    for (var candidate of fillter(selectedJob._id,posted)) {
+    for (var candidate of fillter(selectedJob._id, posted)) {
       var user = allusers.find((user) => user._id == candidate.userid);
       console.log(user);
       var obj = {
         candidateId: user._id,
         fullName: user.firstName + " " + user.lastName,
         appliedDate: candidate.appliedDate,
+        bookedSlot: "",
       };
 
       candidatesDataSource.push(obj);

@@ -51,7 +51,7 @@ function Info() {
 
   function applyNow() {
     if (value && timeValue) {
-      dispatch(applyJob(job));
+      dispatch(applyJob(job, dates, timeValue));
     }
   }
 
