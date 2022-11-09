@@ -8,6 +8,10 @@ const appliedServicesSchema = new mongoose.Schema(
     company: { type: String, required: true },
     postedby: { type: String, required: true },
     appliedDate: { type: Date, required: true },
+    startDate: { type: Date, required: true },
+    endDate: { type: Date, required: true },
+    startTime: { type: Date, required: true },
+    endTime: { type: Date, required: true },
   },
   {
     timestamps: true,

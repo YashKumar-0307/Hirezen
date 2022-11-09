@@ -93,13 +93,13 @@ export const deleteJob = (values) => async (dispatch) => {
 };
 
 // Book your Service
-export const applyJob = (job, dates, timeValue) => async (dispatch) => {
+export const applyJob = (job, dates, value, timeValue) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
   try {
-    console.log(dates, timeValue);
-    const response = await axios.post("/api/jobs/applyjob", { job, user });
+    // console.log(value);
+    const response = await axios.post("/api/jobs/applyjob", { job, user, value ,timeValue });
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
     message.success("Service Booked Successfully!!");
     setTimeout(() => {

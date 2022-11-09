@@ -63,7 +63,7 @@ router.post("/editjob", async (req, res) => {
 });
 
 router.post("/applyjob", async (req, res) => {
-  const { user, job } = req.body;
+  const { user, job , value ,timeValue} = req.body;
   try {
     // const jobDetails = await Jobs.findOne({ _id: job._id });
 
@@ -75,8 +75,8 @@ router.post("/applyjob", async (req, res) => {
     // jobDetails.appliedCandidates.push(appliedCandidate);
     // await jobDetails.save();
     var dat = new Date();
-    // console.log(user);
-    // console.log(job);
+    console.log(value);
+    console.log(timeValue);
 
     const newapplied = new Applied({
       jobid: job._id,
@@ -85,10 +85,12 @@ router.post("/applyjob", async (req, res) => {
       company: job.company,
       postedby: job.postedBy,
       appliedDate: dat,
+      startDate: value[0],
+      endDate: value[1],
+      startTime: timeValue[0],
+      endTime: timeValue[1],
     });
-    // console.log("Created");
     await newapplied.save();
-    // console.log("Created");
     const userDetails = await User.findOne({ _id: user._id });
     const appliedJob = {
       jobid: job._id,

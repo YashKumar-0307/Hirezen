@@ -40,7 +40,7 @@ function Info() {
     dispatch(getAppliedJobs());
   }, []);
 
-  console.log(job);
+  // console.log(job);
 
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   //const appliedCandidates = job.appliedCandidates;
@@ -51,7 +51,7 @@ function Info() {
 
   function applyNow() {
     if (value && timeValue) {
-      dispatch(applyJob(job, dates, timeValue));
+      dispatch(applyJob(job, dates,value, timeValue));
     }
   }
 
