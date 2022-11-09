@@ -391,3 +391,14 @@ input,
   margin: 2rem;
   align-items: center;
 }
+
+.postServiceForm {
+  width: 100% !important;
+}
+
+.feedbackButton:hover {
+  color: white !important;
+  background-color: rgb(52, 9, 104) !important;
+  border: 1px solid rgb(33, 2, 102) !important;
+  cursor: pointer !important;
+}

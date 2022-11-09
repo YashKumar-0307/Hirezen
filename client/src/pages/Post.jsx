@@ -29,8 +29,12 @@ function Post() {
       <DefaultLayout>
         <Tabs defaultActiveKey="0" activeKey={activeTab} className="PostTab">
           <TabPane tab="Service Info" key="0">
-            <Form layout="vertical" onFinish={onFirstFormFinish}>
-              <Row gutter={16}>
+            <Form
+              className="postServiceForm"
+              layout="vertical"
+              onFinish={onFirstFormFinish}
+            >
+              <Row gutter={45}>
                 <Col lg={8} sm={24}>
                   <Form.Item
                     name="title"
@@ -77,8 +81,8 @@ function Post() {
                   </Form.Item>
                 </Col>
               </Row>
-              <Row gutter={16}>
-                <Col lg={8} sm={24}>
+              <Row gutter={128}>
+                <Col lg={10} sm={24}>
                   <Form.Item
                     name="skillsRequired"
                     rules={[{ required: true }]}
@@ -87,7 +91,7 @@ function Post() {
                     <Input />
                   </Form.Item>
                 </Col>
-                <Col lg={8} sm={24}>
+                <Col lg={10} sm={24}>
                   <Form.Item
                     name="minimumQualification"
                     rules={[{ required: true }]}
@@ -123,8 +127,8 @@ function Post() {
             </Form>
           </TabPane>
           <TabPane tab="Company/Person Info" key="1">
-            <Form layout="vertical" onFinish={onFinalFormFinish}>
-              <Row gutter={16}>
+            <Form className="postServiceForm" layout="vertical" onFinish={onFinalFormFinish}>
+              <Row gutter={100}>
                 <Col lg={8} sm={24}>
                   <Form.Item
                     name="company"

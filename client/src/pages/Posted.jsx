@@ -113,7 +113,7 @@ function Posted() {
   function CandidatesList() {
     const candidatesColumns = [
       {
-        title: "Candidate ID",
+        title: "Customer ID",
         dataIndex: "candidateId",
         render: (text, data) => {
           return (
@@ -122,7 +122,7 @@ function Posted() {
         },
       },
       {
-        title: "Full Name",
+        title: "Customer Name",
         dataIndex: "fullName",
       },
       {
@@ -143,8 +143,16 @@ function Posted() {
       var obj = {
         candidateId: user._id,
         fullName: user.firstName + " " + user.lastName,
-        appliedDate: candidate.appliedDate,
-        bookedSlot: "",
+        appliedDate: moment(candidate.appliedDate).format("DD-MMM-YYYY"),
+        bookedSlot: `
+          Date: 
+          ${moment(candidate.startDate).format("DD-MMMM")}
+           to 
+          ${moment(candidate.endDate).format("DD-MMMM")}
+           Time: 
+          ${moment(candidate.startTime).format("hh:mm")}
+           to 
+          ${moment(candidate.endTime).format("hh:mm")} `,
       };
 
       candidatesDataSource.push(obj);

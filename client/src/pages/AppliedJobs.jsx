@@ -23,7 +23,7 @@ function AppliedJobs() {
     var obj = {
       title: job.title,
       company: job.company,
-      appliedDate: job.appliedDate,
+      appliedDate: moment(job.appliedDate).format("DD-MMMM-YYYY"),
       feedback: "Give your feedback",
     };
 
@@ -32,7 +32,7 @@ function AppliedJobs() {
 
   const columns = [
     {
-      title: "Service Title",
+      title: "Service Name",
       dataIndex: "title",
     },
     {

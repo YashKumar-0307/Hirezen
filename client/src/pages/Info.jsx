@@ -8,6 +8,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { applyJob, deleteJob, cancelJob } from "../redux/actions/jobsAction";
 import { DatePicker, Space, TimePicker } from "antd";
+import CustomerFeedbacks from "../components/CustomerFeedbacks";
 
 function Info() {
   const { id } = useParams();
@@ -174,6 +175,9 @@ function Info() {
                 <b>Posted On : </b>
                 {moment(job.createdAt).format("MMM DD, yyyy")}
               </p>
+            </div>
+            <div>
+              <CustomerFeedbacks/>
             </div>
           </div>
         )}
