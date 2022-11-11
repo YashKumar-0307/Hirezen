@@ -1,15 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, Rate, Input } from "antd";
 import { StarOutlined } from "@ant-design/icons";
+import { giveFeedback } from "../redux/actions/jobsAction";
+import { useParams } from "react-router-dom";
 
 const RatingReview = () => {
   const [value, setValue] = useState(3);
+  const [review, setReview] = useState("");
   const { TextArea } = Input;
   const onChange = (e) => {
-    console.log("Change:", e.target.value);
+    setReview(e.target.value);
+    // console.log("Change:", e.target.value);
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+
+  const { id } = useParams();
+  const { jobs } = useSelector((state) => state.jobsReducer);
+  const job = jobs.find((job) => job._id == id);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -21,6 +30,14 @@ const RatingReview = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  const dispatch = useDispatch();
+
+  function submitNow() {
+    if (value && review) {
+      dispatch(giveFeedback(job, value, review));
+    }
+  }
 
   return (
     <div>
@@ -45,7 +62,9 @@ const RatingReview = () => {
             placeholder="Write your review here."
             style={{ marginTop: "2rem", marginBottom: "2rem", width: "100%" }}
           />
-          <Button htmlType="submit">Submit Feedback</Button>
+          <Button htmlType="submit" onClick={submitNow}>
+            Submit Feedback
+          </Button>
         </div>
       </Modal>
     </div>

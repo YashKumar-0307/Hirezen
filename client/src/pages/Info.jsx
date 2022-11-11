@@ -52,7 +52,7 @@ function Info() {
 
   function applyNow() {
     if (value && timeValue) {
-      dispatch(applyJob(job, dates,value, timeValue));
+      dispatch(applyJob(job, dates, value, timeValue));
     }
   }
 
