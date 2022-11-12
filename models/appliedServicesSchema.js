@@ -11,7 +11,10 @@ const appliedServicesSchema = new mongoose.Schema(
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     startTime: { type: Date, required: true },
-    endTime: { type: Date, required: true },
+    rating: { type: Number, default: 0 },
+    review: { type: String, default: "" },
+    clientStatus: { type: Boolean, default: false},
+    workerStatus: { type: Boolean, default: false},
   },
   {
     timestamps: true,

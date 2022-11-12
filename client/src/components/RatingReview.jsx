@@ -14,7 +14,7 @@ const RatingReview = (job) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
-  console.log(job);
+  // console.log(job);
 
   const showModal = () => {
     setIsModalVisible(true);

@@ -75,8 +75,8 @@ router.post("/applyjob", async (req, res) => {
     // jobDetails.appliedCandidates.push(appliedCandidate);
     // await jobDetails.save();
     var dat = new Date();
-    console.log(value);
-    console.log(timeValue);
+    // console.log(value);
+    // console.log(timeValue);
 
     const newapplied = new Applied({
       jobid: job._id,
@@ -135,6 +135,32 @@ router.post("/canceljob", async (req, res) => {
     });
     //console.log(jo._id+" "+user._id);
     // res.send("Service Cancelled Successfully!!");
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+router.post("/addratingreview", async (req, res) => {
+  try {
+    const { job,user,rating, review } = req.body;
+    //console.log(req.body);
+    var jo = job.value;
+    // var datee = job.appliedDate;
+    //console.log(typeof(datee));
+    // const delApplied = await Applied.find( { jobid : jo._id, userid: user._id } );
+    
+    const updatedApplied = await Applied.updateMany(
+      { _id: jo.jobId },
+      { review: review, rating: rating }
+    );
+    
+    // var record = await Applied.findOne({ _id: jo.jobId });
+    // record.review=review;
+    // record.rating=rating;
+    // console.log(record);
+    // console.log(job);
+    // console.log(jo._id+" "+user._id);
+    res.send("Review Submitted Successfully!!");
   } catch (error) {
     return res.status(400).json({ error });
   }
