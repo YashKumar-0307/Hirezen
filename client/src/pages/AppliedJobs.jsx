@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllJobs, getAppliedJobs } from "../redux/actions/jobsAction";
+import { getAppliedJobs } from "../redux/actions/jobsAction";
 import DefaultLayout from "../components/DefaultLayout";
 import { Table } from "antd";
 import moment from "moment";
-import { EditOutlined, StarOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import RatingReview from "../components/RatingReview";
 
 function AppliedJobs() {
   const { app } = useSelector((state) => state.appliedReducer);
-
   const user = JSON.parse(localStorage.getItem("user"));
   const userAppliedJobs = [];
-  // console.log(app);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +21,7 @@ function AppliedJobs() {
       company: job.company,
       appliedDate: moment(job.appliedDate).format("DD-MMMM-YYYY"),
       feedback: "Give your feedback",
+      jobId: job._id,
     };
 
     userAppliedJobs.push(obj);
@@ -45,8 +42,8 @@ function AppliedJobs() {
     },
     {
       title: "Give Feedback",
-      render() {
-        return <RatingReview />;
+      render: (data) => {
+        return <RatingReview value={data} />;
       },
     },
   ];

@@ -183,7 +183,7 @@ export const sortJobs = (values) => async (dispatch) => {
 
 // Give Feedback on service availed
 export const giveFeedback = (job, rating, review) => async (dispatch) => {
-  console.log(rating, review);
+  console.log(job, rating, review);
   const user = JSON.parse(localStorage.getItem("user"));
 
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.

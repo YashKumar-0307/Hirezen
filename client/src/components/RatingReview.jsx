@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Modal, Button, Rate, Input } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import { giveFeedback } from "../redux/actions/jobsAction";
-import { useParams } from "react-router-dom";
 
-const RatingReview = () => {
+const RatingReview = (job) => {
   const [value, setValue] = useState(3);
   const [review, setReview] = useState("");
   const { TextArea } = Input;
   const onChange = (e) => {
     setReview(e.target.value);
-    // console.log("Change:", e.target.value);
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
-  const { id } = useParams();
-  const { jobs } = useSelector((state) => state.jobsReducer);
-  const job = jobs.find((job) => job._id == id);
+  console.log(job);
 
   const showModal = () => {
     setIsModalVisible(true);
