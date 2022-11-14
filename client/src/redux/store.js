@@ -7,13 +7,15 @@ import { appliedReducer } from "./reducers/appliedReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { loaderReducer } from "./reducers/loaderReducer";
 import { usersReducer } from "./reducers/usersReducer";
+import { ratingReviewReducer } from "./reducers/ratingReviewReducer";
 
 const rootReducer = combineReducers({
   jobsReducer: jobsReducer,
   loaderReducer: loaderReducer,
   usersReducer: usersReducer,
   appliedReducer: appliedReducer,
-  postedReducer : postedReducer
+  postedReducer: postedReducer,
+  ratingReviewReducer: ratingReviewReducer,
 });
 
 const store = createStore(

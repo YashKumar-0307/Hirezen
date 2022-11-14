@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Modal, Tag } from "antd";
+import { Modal, Tag, Table } from "antd";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const CustomerFeedbacks = () => {
+const CustomerFeedbacks = (service) => {
+  console.log(service);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -14,6 +17,51 @@ const CustomerFeedbacks = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  const { id } = useParams();
+  const { users } = useSelector((state) => state.usersReducer);
+
+  // const display = Object.keys(service).map((index, key) => {
+  //   return (
+  //     <div className="givenFeedbacks">
+  //       <li key={key}>
+  //         {/* {console.log(service[index][key])} */}
+  //         {/* {service[index][key].firstName} {service[index][key].lastName} {"\t"}
+  //         {"Rated: "} {service[index][key].rating} {"/ 5"} <br />
+  //         {service[index][key].review} */}
+  //       </li>
+  //     </div>
+  //   );
+  // });
+
+  const userFeedbacks = [];
+
+  for (var data of service) {
+    var obj = {
+      name: data.firstName,
+      rating: data.rating,
+      review: data.review,
+    };
+
+    userFeedbacks.push(obj);
+  }
+
+  console.log(userFeedbacks);
+
+  const columns = [
+    {
+      title: "Customer Name",
+      dataIndex: "name",
+    },
+    {
+      title: "Rating Given",
+      dataIndex: "rating",
+    },
+    {
+      title: "Review Given",
+      dataIndex: "review",
+    },
+  ];
 
   return (
     <div style={{ marginTop: "1rem" }}>
@@ -28,17 +76,7 @@ const CustomerFeedbacks = () => {
         onCancel={handleCancel}
         closable={false}
       >
-        <div>
-          <p>
-            1. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed
-            labore consequatur tempora perspiciatis aperiam quae mollitia
-            molestias minima soluta voluptatem.
-          </p>
-          <p>
-            2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Quibusdam, neque?
-          </p>
-        </div>
+        {/* <Table columns={columns} dataSource={userFeedbacks} /> */}
       </Modal>
     </div>
   );

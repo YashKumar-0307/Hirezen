@@ -136,7 +136,7 @@ function Posted() {
     ];
 
     var candidatesDataSource = [];
-    console.log(selectedJob);
+    // console.log(selectedJob);
     for (var candidate of fillter(selectedJob._id, posted)) {
       var user = allusers.find((user) => user._id == candidate.userid);
       console.log(user);

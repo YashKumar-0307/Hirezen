@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllJobs, getAppliedJobs } from "../redux/actions/jobsAction";
-import { Button, Tag } from "antd";
+import {
+  getAllJobs,
+  getAppliedJobs,
+  getRatingReview,
+} from "../redux/actions/jobsAction";
+import { Button, Tag, Table } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { applyJob, deleteJob, cancelJob } from "../redux/actions/jobsAction";
-import { DatePicker, Space, TimePicker } from "antd";
+import { DatePicker, Space, TimePicker, Rate } from "antd";
 import CustomerFeedbacks from "../components/CustomerFeedbacks";
 
 function Info() {
@@ -15,10 +19,13 @@ function Info() {
   const { jobs } = useSelector((state) => state.jobsReducer);
   const { app } = useSelector((state) => state.appliedReducer);
   const job = jobs.find((job) => job._id == id);
+  const { ratingreview } = useSelector((state) => state.ratingReviewReducer);
   const { RangePicker } = DatePicker;
   const [dates, setDates] = useState(null);
   const [value, setValue] = useState(null);
   const [timeValue, setTimeValue] = useState(null);
+  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+
   const disabledDate = (current) => {
     if (!dates) {
       return false;
@@ -39,9 +46,47 @@ function Info() {
 
   useEffect(() => {
     dispatch(getAppliedJobs());
+    dispatch(getRatingReview(job._id));
   }, []);
 
-  // console.log(job);
+  const userFeedbacks = [];
+
+  for (var data of ratingreview) {
+    var obj = {
+      name: data.firstName + " " + data.lastName,
+      rating: data.rating,
+      review: data.review,
+    };
+
+    userFeedbacks.push(obj);
+  }
+
+  // console.log(userFeedbacks);
+
+  const columns = [
+    {
+      title: "Customer Name",
+      dataIndex: "name",
+    },
+    {
+      title: "Rating Given",
+      dataIndex: "rating",
+      render: (text, data) => {
+        return (
+          <span>
+            <Rate tooltips={desc} value={data.rating} />
+            {value ? <span className="ant-rate-text"></span> : ""}
+          </span>
+        );
+      },
+    },
+    {
+      title: "Review Given",
+      dataIndex: "review",
+    },
+  ];
+
+  console.log(columns);
 
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   //const appliedCandidates = job.appliedCandidates;
@@ -176,9 +221,10 @@ function Info() {
                 {moment(job.createdAt).format("MMM DD, yyyy")}
               </p>
             </div>
-            <div>
-              <CustomerFeedbacks/>
-            </div>
+            {/* <div>
+              <CustomerFeedbacks value={ratingreview} />
+            </div> */}
+            <Table columns={columns} dataSource={userFeedbacks} />
           </div>
         )}
       </DefaultLayout>

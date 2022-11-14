@@ -24,6 +24,16 @@ router.get("/getappliedjobs", async (req, res) => {
   }
 });
 
+router.get("/getratingreview", async (req, res) => {
+  try {
+    const jo = await Applied.find({ jobid: req.query.id });
+    // console.log(req.query);
+    res.send(jo);
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
 router.get("/getpostedjobs", async (req, res) => {
   try {
     const jo = await Applied.find({ postedby: req.query.id });
@@ -63,7 +73,7 @@ router.post("/editjob", async (req, res) => {
 });
 
 router.post("/applyjob", async (req, res) => {
-  const { user, job , value ,timeValue} = req.body;
+  const { user, job, value, timeValue } = req.body;
   try {
     // const jobDetails = await Jobs.findOne({ _id: job._id });
 
@@ -83,6 +93,8 @@ router.post("/applyjob", async (req, res) => {
       userid: user._id,
       title: job.title,
       company: job.company,
+      firstName: user.firstName,
+      lastName: user.lastName,
       postedby: job.postedBy,
       appliedDate: dat,
       startDate: value[0],
@@ -142,18 +154,18 @@ router.post("/canceljob", async (req, res) => {
 
 router.post("/addratingreview", async (req, res) => {
   try {
-    const { job,user,rating, review } = req.body;
+    const { job, user, rating, review } = req.body;
     //console.log(req.body);
     var jo = job.value;
     // var datee = job.appliedDate;
     //console.log(typeof(datee));
     // const delApplied = await Applied.find( { jobid : jo._id, userid: user._id } );
-    
+
     const updatedApplied = await Applied.updateMany(
       { _id: jo.jobId },
       { review: review, rating: rating }
     );
-    
+
     // var record = await Applied.findOne({ _id: jo.jobId });
     // record.review=review;
     // record.rating=rating;

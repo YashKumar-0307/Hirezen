@@ -28,6 +28,20 @@ export const getAppliedJobs = () => async (dispatch) => {
   }
 };
 
+export const getRatingReview = (jobid) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    // const user = JSON.parse(localStorage.getItem("user"));
+    const response = await axios.get(`/api/jobs/getratingreview?id=${jobid}`);
+    // console.log(response);
+    dispatch({ type: "GET_RATING_REVIEW", payload: response.data });
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
 export const getPostedJobs = () => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
   try {
@@ -196,7 +210,7 @@ export const giveFeedback = (job, rating, review) => async (dispatch) => {
       review,
     });
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
-    message.success("Service Booked Successfully!!");
+    message.success("Review Submitted Successfully!!");
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
