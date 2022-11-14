@@ -12,7 +12,7 @@ const RatingReview = (job) => {
     setReview(e.target.value);
   };
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+  const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
   // console.log(job);
 

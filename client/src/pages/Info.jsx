@@ -7,12 +7,11 @@ import {
   getAppliedJobs,
   getRatingReview,
 } from "../redux/actions/jobsAction";
-import { Button, Tag, Table } from "antd";
+import { Button, Tag, Table, Modal } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { applyJob, deleteJob, cancelJob } from "../redux/actions/jobsAction";
 import { DatePicker, Space, TimePicker, Rate } from "antd";
-import CustomerFeedbacks from "../components/CustomerFeedbacks";
 
 function Info() {
   const { id } = useParams();
@@ -24,7 +23,19 @@ function Info() {
   const [dates, setDates] = useState(null);
   const [value, setValue] = useState(null);
   const [timeValue, setTimeValue] = useState(null);
-  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   const disabledDate = (current) => {
     if (!dates) {
@@ -221,10 +232,29 @@ function Info() {
                 {moment(job.createdAt).format("MMM DD, yyyy")}
               </p>
             </div>
-            {/* <div>
-              <CustomerFeedbacks value={ratingreview} />
-            </div> */}
-            <Table columns={columns} dataSource={userFeedbacks} />
+
+            <div style={{ marginTop: "1rem" }}>
+              <Tag
+                color="purple"
+                className="feedbackButton"
+                onClick={showModal}
+              >
+                Click to see customer feedbacks
+              </Tag>
+              <Modal
+                title="Customer Feedbacks"
+                footer={false}
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                closable={false}
+                style={{ width: "100px" }}
+              >
+                {userFeedbacks && (
+                  <Table columns={columns} dataSource={userFeedbacks} />
+                )}
+              </Modal>
+            </div>
           </div>
         )}
       </DefaultLayout>
