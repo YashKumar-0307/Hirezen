@@ -16,11 +16,13 @@ const jobSchema = new mongoose.Schema(
     phoneNumber: { type: String, required: true },
     companyDescription: { type: String, required: true },
     postedBy: { type: String, required: true },
+    score: { type : Number, default: 0},
+    avgRating: { type : Number, default: 0},
   },
   {
     timestamps: true,
   }
 );
 
-const jobModel = new mongoose.model("jobs", jobSchema);
+const jobModel = new mongoose.model("jobs2", jobSchema);
 module.exports = jobModel;
