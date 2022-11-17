@@ -7,7 +7,7 @@ const moment = require("moment");
 
 router.get("/getalljobs", async (req, res) => {
   try {
-    const jobs = await Jobs.find();
+    const jobs = await Jobs.find().sort({ score: -1, avgRating: -1 });
     res.send(jobs);
   } catch (error) {
     return res.status(400).json({ error });
