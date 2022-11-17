@@ -163,8 +163,9 @@ router.post("/addratingreview", async (req, res) => {
 
     const updatedApplied = await Applied.updateMany(
       { _id: jo.jobId },
-      { review: review, rating: rating }
+      { review: review, rating: rating, reRecommend: true }
     );
+    // console.log(updatedApplied);
 
     // var record = await Applied.findOne({ _id: jo.jobId });
     // record.review=review;

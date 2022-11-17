@@ -18,6 +18,8 @@ const appliedServicesSchema = new mongoose.Schema(
     review: { type: String, default: "" },
     clientStatus: { type: Boolean, default: false },
     workerStatus: { type: Boolean, default: false },
+    reRecommend: { type: Boolean, default: false },
+    reviewScore: { type: Number, default: -1 },
   },
   {
     timestamps: true,
