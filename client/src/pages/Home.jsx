@@ -53,7 +53,7 @@ function Home() {
                       <Link to={`/jobs/${job._id}`}>
                         <Button>View</Button>
                       </Link>
-                      <Rate disabled defaultValue={0} />
+                      <Rate disabled defaultValue={job.avgRating} />
                       <p className="homepage-pTag">
                         Posted On:{" "}
                         {moment(job.createdAt).format("MMM DD, YYYY")}
