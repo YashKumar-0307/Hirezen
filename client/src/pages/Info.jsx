@@ -7,7 +7,7 @@ import {
   getAppliedJobs,
   getRatingReview,
 } from "../redux/actions/jobsAction";
-import { Button, Tag, Table, Modal } from "antd";
+import { Button, Tag, Table, Modal, message } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { applyJob, deleteJob, cancelJob } from "../redux/actions/jobsAction";
@@ -25,6 +25,9 @@ function Info() {
   const [timeValue, setTimeValue] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -97,7 +100,7 @@ function Info() {
     },
   ];
 
-  console.log(columns);
+  // console.log(columns);
 
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   //const appliedCandidates = job.appliedCandidates;
@@ -107,8 +110,19 @@ function Info() {
   //console.log(alreadyApplied);
 
   function applyNow() {
-    if (value && timeValue) {
-      dispatch(applyJob(job, dates, value, timeValue));
+    if (
+      user.firstName &&
+      user.lastName &&
+      user.email &&
+      user.mobileNumber &&
+      user.address
+    ) {
+      if (value && timeValue) {
+        dispatch(applyJob(job, dates, value, timeValue));
+      }
+    }
+    else {
+      message.error("Please Complete Your Profile First!");
     }
   }
 
