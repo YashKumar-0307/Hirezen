@@ -143,7 +143,7 @@ router.post("/applyjob", async (req, res) => {
 
     var mailOptions = {
       from: email,
-      to: secrets[0].testMail,//"pranjal2019.s@gmail.com",//job.email,
+      to: secrets[0].testMail,//job.email,
       subject: "Service booked from "+userDetails.firstName+" "+userDetails.lastName+" from "+addZero(newapplied.startDate.getDate())+"/"+addZero(newapplied.startDate.getMonth())+"/"+addZero(newapplied.startDate.getFullYear()),
       text: message
     };
