@@ -10,7 +10,6 @@ mongoose.set('useFindAndModify', false);
 const secrets=require("../secrets.json")
 
 
-
 router.get("/getalljobs", async (req, res) => {
   try {
     const jobs = await Jobs.find().sort({ score: -1, avgRating: -1 });
@@ -129,7 +128,6 @@ router.post("/applyjob", async (req, res) => {
     await newapplied.save();
 
     var email=secrets[0].username;
-    console.log(email);
     var password=secrets[0].password;
     var transporter = nodemailer.createTransport({
       service: 'gmail',
