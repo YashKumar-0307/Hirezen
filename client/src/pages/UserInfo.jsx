@@ -53,7 +53,7 @@ function UserInfo() {
             })}
             <hr />
             <h3>
-              <b>Buiseness Address</b>
+              <b>Business Address</b>
             </h3>
             {user.project.map((project) => {
               return <li>{project}</li>;

@@ -27,7 +27,7 @@ function Info() {
   const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
+  // console.log(user);
 
   const showModal = () => {
     setIsModalVisible(true);

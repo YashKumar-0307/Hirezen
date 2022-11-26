@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DefaultLayout from "../components/DefaultLayout";
-import { Row, Col, Form, Tabs, Input, Button, Select } from "antd";
+import { Row, Col, Form, Tabs, Input, Button, Select, message } from "antd";
 import { useDispatch } from "react-redux";
 import { postJob } from "../redux/actions/jobsAction";
 
@@ -12,10 +12,21 @@ function Post() {
   const [jobInfo, setJobInfo] = useState({});
   const [activeTab, setActiveTab] = useState("0");
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   function onFirstFormFinish(values) {
-    setJobInfo(values);
-    setActiveTab("1");
+    if (
+      user.firstName &&
+      user.lastName &&
+      user.email &&
+      user.mobileNumber &&
+      user.address
+    ) {
+      setJobInfo(values);
+      setActiveTab("1");
+    } else {
+      message.error("Please Complete Your Profile First!");
+    }
   }
 
   function onFinalFormFinish(values) {
@@ -127,7 +138,11 @@ function Post() {
             </Form>
           </TabPane>
           <TabPane tab="Company/Person Info" key="1">
-            <Form className="postServiceForm" layout="vertical" onFinish={onFinalFormFinish}>
+            <Form
+              className="postServiceForm"
+              layout="vertical"
+              onFinish={onFinalFormFinish}
+            >
               <Row gutter={100}>
                 <Col lg={8} sm={24}>
                   <Form.Item
