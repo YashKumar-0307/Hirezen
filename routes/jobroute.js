@@ -123,8 +123,7 @@ router.post("/applyjob", async (req, res) => {
     await newapplied.save();
 
     var email=secrets[0].username;
-    console.log(email);//"hirezen.solutions@gmail.com";
-    var password=secrets[0].password;//"rcbyocmslkqcnsnh";
+    var password=secrets[0].password;
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
