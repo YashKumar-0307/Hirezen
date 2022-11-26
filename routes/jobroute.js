@@ -3,7 +3,13 @@ const router = express.Router();
 const Jobs = require("../models/jobsSchema.js");
 const User = require("../models/userSchema.js");
 const Applied = require("../models/appliedServicesSchema.js");
-const moment = require("moment");
+//const moment = require("moment");
+const mongoose=require("mongoose");
+const nodemailer=require("nodemailer");
+mongoose.set('useFindAndModify', false);
+const secrets=require("../secrets.json")
+
+
 
 router.get("/getalljobs", async (req, res) => {
   try {
@@ -104,6 +110,55 @@ router.post("/applyjob", async (req, res) => {
     });
     await newapplied.save();
     const userDetails = await User.findOne({ _id: user._id });
+
+
+    let pName=newapplied.company,fName=userDetails.firstName, lName=userDetails.lastName,sTime=newapplied.startTime,eTime=newapplied.endTime,sDate=newapplied.startDate,eDate=newapplied.endDate,address=userDetails.address,mNo=userDetails.mobileNumber;
+    //console.log(newapplied);
+    sTimeT=sTime.getTime();
+    console.log(sTimeT);
+    function addZero(i) {
+      if (i < 10) {i = "0" + i}
+      return i;
+    }
+
+    const message="Greetings "+pName+ ",\n\tYour service offer has been availed by the user " +fName+" "+lName+". They have opted to avail your service from "+addZero(sTime.getHours()) +":"+addZero(sTime.getMinutes())+" "+addZero(sDate.getDate())+"/"+addZero(sDate.getMonth()+1)+"/"+sDate.getFullYear()+" to "+addZero(eTime.getHours())+":"+addZero(eTime.getMinutes())+" "+ addZero(eDate.getDate())+"/"+addZero(eDate.getMonth()+1)+"/"+eDate.getFullYear()+". Kindly reach their place "+address+". Please do remember to call them at "+mNo+" for further instructions and directions. In case of an issue please reach us at hirezen.solutions@gmail.com.\n Regards, \n Hirezen Team.";
+
+
+
+
+    await newapplied.save();
+
+    var email=secrets[0].username;
+    console.log(email);
+    var password=secrets[0].password;
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: email,
+        pass: password
+      }
+    });
+
+
+
+    var mailOptions = {
+      from: email,
+      to: secrets[0].testMail,//"pranjal2019.s@gmail.com",//job.email,
+      subject: "Service booked from "+userDetails.firstName+" "+userDetails.lastName+" from "+addZero(newapplied.startDate.getDate())+"/"+addZero(newapplied.startDate.getMonth())+"/"+addZero(newapplied.startDate.getFullYear()),
+      text: message
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
+
+
+
     const appliedJob = {
       jobid: job._id,
       appliedDate: dat,

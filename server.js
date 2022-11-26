@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const jobsroute = require("./routes/jobroute.js");
 const userroute = require("./routes/userroute.js");
 const PORT = process.env.PORT || 3001;
+const secrets=require("./secrets.json");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -14,7 +15,7 @@ app.use(cors());
 
 async function dbconnect() {
   try {
-    const uri = "";
+    const uri = secrets[0].dblink;
     mongoose.connect(uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
