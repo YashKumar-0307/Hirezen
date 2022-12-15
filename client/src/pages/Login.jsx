@@ -34,7 +34,8 @@ function Login() {
           style={{
             textAlign: "center",
             display: "flex",
-            paddingLeft: "10rem",
+            justifyContent: "center",
+            fontSize: "10rem",
           }}
         >
           {/* <Fade left> */}
@@ -68,6 +69,7 @@ function Login() {
                 backgroundColor: "rgba(255,255,255,.5)",
                 borderRadius: "1%",
                 backdropFilter: " saturate(180%) blur(10px)",
+                padding: "2rem",
               }}
             >
               <h1>Login</h1>
@@ -99,7 +101,9 @@ function Login() {
                     }}
                   />
                 </Form.Item>
-                <Button htmlType="submit" className="mb-3">Login</Button>
+                <Button htmlType="submit" className="mb-3">
+                  Login
+                </Button>
               </Form>
               <a
                 className="loginATag"
