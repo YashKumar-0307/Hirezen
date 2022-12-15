@@ -17,10 +17,15 @@ const { Header, Sider, Content } = Layout;
 
 class DefaultLayout extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      collapsed: false,
+      collapsed: window.matchMedia("(max-width: 650px)").matches,
     };
+  }
+
+  componentDidMount() {
+    const handler = (e) => this.setState({ matches: e.matches });
+    window.matchMedia("(max-width: 650px)").addEventListener("change", handler);
   }
 
   toggle = () => {
