@@ -17,7 +17,7 @@ function AppliedJobs() {
     dispatch(getAppliedJobs());
   }, []);
   for (var job of app) {
-    console.log(app);
+    // console.log(app);
     var obj = {
       title: job.title,
       company: job.company,
@@ -25,6 +25,8 @@ function AppliedJobs() {
       appliedDate: moment(job.appliedDate).format("DD-MMMM-YYYY"),
       feedback: "Give your feedback",
       jobId: job._id,
+      Rated: job.rating,
+      Reviewed: job.review,
     };
 
     userAppliedJobs.push(obj);

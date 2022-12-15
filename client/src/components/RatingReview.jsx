@@ -21,8 +21,6 @@ const RatingReview = (job) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
-  // console.log(job);
-
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -44,12 +42,28 @@ const RatingReview = (job) => {
 
   return (
     <div>
-      {user.review && user.rating ? (
-        <Space>
-          <CheckCircleTwoTone twoToneColor="#52c41a" />
-        </Space>
+      {job.value.Rated > 0 && job.value.Reviewed.length > 0 ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Space>
+            <CheckCircleTwoTone twoToneColor="#52c41a" />
+          </Space>
+        </div>
       ) : (
-        <StarOutlined onClick={showModal} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <StarOutlined onClick={showModal} />
+        </div>
       )}
       <Modal
         title="Give Your Rating and Review"
