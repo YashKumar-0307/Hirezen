@@ -6,6 +6,7 @@ import { Table, Modal } from "antd";
 import moment from "moment";
 import { EditOutlined, OrderedListOutlined } from "@ant-design/icons";
 import { useNavigate, Link } from "react-router-dom";
+import ServiceCompleted from "../components/ServiceCompleted";
 
 function count(id, records) {
   var count = 0;
@@ -25,7 +26,7 @@ function fillter(id, records) {
       count.push(records[rec]);
     }
   }
-  console.log(count);
+  // console.log(count);
   return count;
 }
 
@@ -133,17 +134,25 @@ function Posted() {
         title: "Booked Slot",
         dataIndex: "bookedSlot",
       },
+      {
+        title: "Mark Service as Competed",
+        render: (data) => {
+          return <ServiceCompleted value={data} />;
+        },
+      },
     ];
 
     var candidatesDataSource = [];
     // console.log(selectedJob);
     for (var candidate of fillter(selectedJob._id, posted)) {
       var user = allusers.find((user) => user._id == candidate.userid);
-      console.log(user);
       var obj = {
         candidateId: user._id,
         fullName: user.firstName + " " + user.lastName,
         appliedDate: moment(candidate.appliedDate).format("DD-MMM-YYYY"),
+        isFeedbackSubmitted: candidate.clientStatus,
+        isServiceDone: candidate.workerStatus,
+        bookingId: candidate._id,
         bookedSlot: `
           Date: 
           ${moment(candidate.startDate).format("DD-MMMM")}

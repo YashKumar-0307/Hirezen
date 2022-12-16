@@ -4,12 +4,11 @@ const Jobs = require("../models/jobsSchema.js");
 const User = require("../models/userSchema.js");
 const Applied = require("../models/appliedServicesSchema.js");
 //const moment = require("moment");
-const mongoose=require("mongoose");
-const nodemailer=require("nodemailer");
-mongoose.set('useFindAndModify', false);
-const secrets=require("../secrets.json")
+const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
+mongoose.set("useFindAndModify", false);
+const secrets = require("../secrets.json");
 console.log(secrets);
-
 
 router.get("/getalljobs", async (req, res) => {
   try {
@@ -121,14 +120,35 @@ router.post("/applyjob", async (req, res) => {
       address = userDetails.address,
       mNo = userDetails.mobileNumber;
     //console.log(newapplied);
-    const message="Greetings "+pName+ ",\nYour job offer has been availed by the user " +fName+" "+lName+". They have opted to get avail your service from "+ sTime.getHours()+":"+sTime.getMinutes()+" "+sDate+" to "+eTime+" "+ eDate+". Kindly reach their place "+address+". Please do remember to call them at "+mNo+" for further instructions and directions. In case of an issue please reach us at hirezen.solutions@gmail.com.\n Regards, \n Hirezen Team.";
+    const message =
+      "Greetings " +
+      pName +
+      ",\nYour job offer has been availed by the user " +
+      fName +
+      " " +
+      lName +
+      ". They have opted to get avail your service from " +
+      sTime.getHours() +
+      ":" +
+      sTime.getMinutes() +
+      " " +
+      sDate +
+      " to " +
+      eTime +
+      " " +
+      eDate +
+      ". Kindly reach their place " +
+      address +
+      ". Please do remember to call them at " +
+      mNo +
+      " for further instructions and directions. In case of an issue please reach us at hirezen.solutions@gmail.com.\n Regards, \n Hirezen Team.";
     //console.log(message);
 
     await newapplied.save();
 
-    var email=secrets[0].username;
-    console.log(email);//"hirezen.solutions@gmail.com";
-    var password=secrets[0].password;//"rcbyocmslkqcnsnh";
+    var email = secrets[0].username;
+    console.log(email); //"hirezen.solutions@gmail.com";
+    var password = secrets[0].password; //"rcbyocmslkqcnsnh";
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -139,9 +159,15 @@ router.post("/applyjob", async (req, res) => {
 
     var mailOptions = {
       from: email,
-      to: secrets[0].testMail,//"pranjal2019.s@gmail.com",//job.email,
-      subject: "Service booked from "+userDetails.firstName+" "+userDetails.lastName+" from "+newapplied.startDate ,
-      text: message
+      to: secrets[0].testMail, //"pranjal2019.s@gmail.com",//job.email,
+      subject:
+        "Service booked from " +
+        userDetails.firstName +
+        " " +
+        userDetails.lastName +
+        " from " +
+        newapplied.startDate,
+      text: message,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -211,7 +237,7 @@ router.post("/addratingreview", async (req, res) => {
 
     const updatedApplied = await Applied.updateMany(
       { _id: jo.jobId },
-      { review: review, rating: rating, reRecommend: true }
+      { review: review, rating: rating, reRecommend: true, clientStatus: true }
     );
     // console.log(updatedApplied);
 
@@ -222,6 +248,20 @@ router.post("/addratingreview", async (req, res) => {
     // console.log(job);
     // console.log(jo._id+" "+user._id);
     res.send("Review Submitted Successfully!!");
+  } catch (error) {
+    return res.status(400).json({ error });
+  }
+});
+
+router.post("/markworkstatus", async (req, res) => {
+  try {
+    Applied.findByIdAndUpdate(req.query.id, { workerStatus: true }, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Service Completed Successfully!!");
+      }
+    });
   } catch (error) {
     return res.status(400).json({ error });
   }

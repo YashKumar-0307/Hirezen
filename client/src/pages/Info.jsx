@@ -44,8 +44,8 @@ function Info() {
     if (!dates) {
       return false;
     }
-    const tooLate = dates[0] && current.diff(dates[0], "days") > 7;
-    const tooEarly = dates[1] && dates[1].diff(current, "days") > 7;
+    const tooLate = dates[0] && current.diff(dates[0], "days") > 3;
+    const tooEarly = dates[1] && dates[1].diff(current, "days") > 3;
     return !!tooEarly || !!tooLate;
   };
   const onOpenChange = (open) => {
@@ -105,9 +105,12 @@ function Info() {
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   //const appliedCandidates = job.appliedCandidates;
   const alreadyApplied = app.find(
-    (candidate) => candidate.jobid == job._id && candidate.userid == userid
+    (candidate) =>
+      candidate.jobid == job._id &&
+      candidate.userid == userid &&
+      candidate.workerStatus == false
   );
-  //console.log(alreadyApplied);
+  console.log(alreadyApplied);
 
   function applyNow() {
     if (
@@ -120,8 +123,7 @@ function Info() {
       if (value && timeValue) {
         dispatch(applyJob(job, dates, value, timeValue));
       }
-    }
-    else {
+    } else {
       message.error("Please Complete Your Profile First!");
     }
   }

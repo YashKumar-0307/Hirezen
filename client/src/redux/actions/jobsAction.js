@@ -219,3 +219,25 @@ export const giveFeedback = (job, rating, review) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: false });
   }
 };
+
+// Mark Worker Status True
+export const markWorkerStatus = (bookingId) => async (dispatch) => {
+  // console.log(job, rating, review);
+  // const user = JSON.parse(localStorage.getItem("user"));
+
+  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+  try {
+    // console.log(value);
+    const response = await axios.post(
+      `/api/jobs/markworkstatus?id=${bookingId}`
+    );
+    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+    message.success("Service Completed Successfully!!");
+    setTimeout(() => {
+      window.location.href = "/posted";
+    }, 1000);
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
