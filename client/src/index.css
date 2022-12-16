@@ -410,6 +410,18 @@ input,
   padding: 5rem;
 }
 
+.bookingBtn {
+  display: inline-block;
+  margin-left: 3rem;
+}
+
+.locationField {
+  display: inline-block;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: space-between;
+}
+
 /**** MEDIA QUERIES OF LOGIN PAGE ****/
 @media screen and (max-width: 650px) {
   .animate-character {

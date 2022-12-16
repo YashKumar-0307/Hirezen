@@ -122,7 +122,7 @@ export const applyJob = (job, dates, value, timeValue) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
     message.success("Service Booked Successfully!!");
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/appliedjob";
     }, 1000);
   } catch (error) {
     console.log(error);

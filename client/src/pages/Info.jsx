@@ -7,7 +7,7 @@ import {
   getAppliedJobs,
   getRatingReview,
 } from "../redux/actions/jobsAction";
-import { Button, Tag, Table, Modal, message } from "antd";
+import { Button, Tag, Table, Modal, message, Input } from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { applyJob, deleteJob, cancelJob } from "../redux/actions/jobsAction";
@@ -18,6 +18,8 @@ function Info() {
   const { jobs } = useSelector((state) => state.jobsReducer);
   const { app } = useSelector((state) => state.appliedReducer);
   const job = jobs.find((job) => job._id == id);
+  const [lat, setLat] = useState(null);
+  const [long, setLong] = useState(null);
   const { ratingreview } = useSelector((state) => state.ratingReviewReducer);
   const { RangePicker } = DatePicker;
   const [dates, setDates] = useState(null);
@@ -110,7 +112,14 @@ function Info() {
       candidate.userid == userid &&
       candidate.workerStatus == false
   );
-  console.log(alreadyApplied);
+  // console.log(alreadyApplied);
+
+  function getCoordinates() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
+  }
 
   function applyNow() {
     if (
@@ -121,7 +130,13 @@ function Info() {
       user.address
     ) {
       if (value && timeValue) {
-        dispatch(applyJob(job, dates, value, timeValue));
+        if (lat !== null && long !== null) {
+          dispatch(applyJob(job, dates, value, timeValue));
+        } else {
+          message.error("Please Give Your Location!");
+        }
+      } else {
+        message.error("Please Select Your Slot Dates and Time!");
       }
     } else {
       message.error("Please Complete Your Profile First!");
@@ -240,7 +255,26 @@ function Info() {
                       style={{ padding: "0.5rem" }}
                     />
                   </Space>
-                  <Button onClick={applyNow}>Book Your Slot</Button>
+                  <div className="locationField">
+                    <Space>
+                      <Input
+                        style={{
+                          width: "25rem",
+                        }}
+                        value={
+                          lat == null
+                            ? ""
+                            : `https://google.com/maps?q=${lat},${long}`
+                        }
+                      />
+                      <Button onClick={getCoordinates}>
+                        Get Your Location
+                      </Button>
+                    </Space>
+                  </div>
+                  <Button className="bookingBtn" onClick={applyNow}>
+                    Book Your Slot
+                  </Button>
                 </div>
               )}
               <p>
