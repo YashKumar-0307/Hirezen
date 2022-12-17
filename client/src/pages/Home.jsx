@@ -11,6 +11,7 @@ function Home() {
   // Accessing array data present in jobsReducer
   const { jobs } = useSelector((state) => state.jobsReducer);
   const dispatch = useDispatch();
+  jobs.sort((a, b) => a.score < b.score ? 1 : -1);
 
   useEffect(() => {
     dispatch(getAllJobs());
@@ -21,6 +22,7 @@ function Home() {
       <DefaultLayout>
         <Row gutter={16}>
           {jobs.map((job) => {
+            console.log(job);
             // {
             //   /* 'lg' is for larger devices and 'sm' is for small devices. 12 is the no. of columns out of total 24 columns.
             //     means it shows 1 job in 12 columns i.e. 1 job in half screen or say 2 jobs in 1 row on large devices
