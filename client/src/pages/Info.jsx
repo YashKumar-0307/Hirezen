@@ -68,13 +68,15 @@ function Info() {
   const userFeedbacks = [];
 
   for (var data of ratingreview) {
-    var obj = {
-      name: data.firstName + " " + data.lastName,
-      rating: data.rating,
-      review: data.review,
-    };
+    if (data.clientStatus) {
+      var obj = {
+        name: data.firstName + " " + data.lastName,
+        rating: data.rating,
+        review: data.review,
+      };
 
-    userFeedbacks.push(obj);
+      userFeedbacks.push(obj);
+    }
   }
 
   // console.log(userFeedbacks);
