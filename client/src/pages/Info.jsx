@@ -133,7 +133,7 @@ function Info() {
     ) {
       if (value && timeValue) {
         if (lat !== null && long !== null) {
-          dispatch(applyJob(job, dates, value, timeValue));
+          dispatch(applyJob(job, dates, value, timeValue, lat, long));
         } else {
           message.error("Please Give Your Location!");
         }

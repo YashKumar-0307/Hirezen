@@ -78,7 +78,7 @@ router.post("/editjob", async (req, res) => {
 });
 
 router.post("/applyjob", async (req, res) => {
-  const { user, job, value, timeValue } = req.body;
+  const { user, job, value, timeValue, lat, long } = req.body;
   try {
     // const jobDetails = await Jobs.findOne({ _id: job._id });
 
@@ -106,6 +106,7 @@ router.post("/applyjob", async (req, res) => {
       endDate: value[1],
       startTime: timeValue[0],
       endTime: timeValue[1],
+      location_string: `https://google.com/maps?q=${lat},${long}`,
     });
     await newapplied.save();
     const userDetails = await User.findOne({ _id: user._id });
@@ -123,7 +124,7 @@ router.post("/applyjob", async (req, res) => {
     const message =
       "Greetings " +
       pName +
-      ",\nYour job offer has been availed by the user " +
+      ",\nYour service has been availed by the user " +
       fName +
       " " +
       lName +
@@ -159,7 +160,7 @@ router.post("/applyjob", async (req, res) => {
 
     var mailOptions = {
       from: email,
-      to: secrets[0].testMail, //"pranjal2019.s@gmail.com",//job.email,
+      to: [secrets[0].testMail, user.email], //"pranjal2019.s@gmail.com",//job.email,
       subject:
         "Service booked from " +
         userDetails.firstName +

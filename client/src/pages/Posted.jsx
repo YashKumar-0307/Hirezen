@@ -5,7 +5,7 @@ import { getPostedJobs } from "../redux/actions/jobsAction";
 import { Table, Modal } from "antd";
 import moment from "moment";
 import { EditOutlined, OrderedListOutlined } from "@ant-design/icons";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 import ServiceCompleted from "../components/ServiceCompleted";
 
 function count(id, records) {
@@ -114,11 +114,13 @@ function Posted() {
   function CandidatesList() {
     const candidatesColumns = [
       {
-        title: "Customer ID",
+        title: "Customer Details",
         dataIndex: "candidateId",
         render: (text, data) => {
           return (
-            <Link to={`/users/${data.candidateId}`}>{data.candidateId}</Link>
+            <Link to={`/users/${data.candidateId}`} target="/blank">
+              {"Click Here"}
+            </Link>
           );
         },
       },
@@ -140,6 +142,16 @@ function Posted() {
           return <ServiceCompleted value={data} />;
         },
       },
+      {
+        title: "Booking Location",
+        render: (text, data) => {
+          return (
+            <a href={`${data.bookingLocation}`} target="/blank">
+              {"Click Here"}
+            </a>
+          );
+        },
+      },
     ];
 
     var candidatesDataSource = [];
@@ -152,6 +164,7 @@ function Posted() {
         appliedDate: moment(candidate.appliedDate).format("DD-MMM-YYYY"),
         isFeedbackSubmitted: candidate.clientStatus,
         isServiceDone: candidate.workerStatus,
+        bookingLocation: candidate.location_string,
         bookingId: candidate._id,
         bookedSlot: `
           Date: 

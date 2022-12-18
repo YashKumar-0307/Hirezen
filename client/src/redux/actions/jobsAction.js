@@ -107,28 +107,31 @@ export const deleteJob = (values) => async (dispatch) => {
 };
 
 // Book your Service
-export const applyJob = (job, dates, value, timeValue) => async (dispatch) => {
-  const user = JSON.parse(localStorage.getItem("user"));
+export const applyJob =
+  (job, dates, value, timeValue, lat, long) => async (dispatch) => {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-  dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
-  try {
-    // console.log(value);
-    const response = await axios.post("/api/jobs/applyjob", {
-      job,
-      user,
-      value,
-      timeValue,
-    });
-    dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
-    message.success("Service Booked Successfully!!");
-    setTimeout(() => {
-      window.location.href = "/appliedjob";
-    }, 1000);
-  } catch (error) {
-    console.log(error);
-    dispatch({ type: "LOADING", payload: false });
-  }
-};
+    dispatch({ type: "LOADING", payload: true }); // Making payload to true will show spinner on screen untill data is fetched.
+    try {
+      // console.log(value);
+      const response = await axios.post("/api/jobs/applyjob", {
+        job,
+        user,
+        value,
+        timeValue,
+        lat,
+        long,
+      });
+      dispatch({ type: "LOADING", payload: false }); // After getting data, make spinner off by making payload false.
+      message.success("Service Booked Successfully!!");
+      setTimeout(() => {
+        window.location.href = "/appliedjob";
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "LOADING", payload: false });
+    }
+  };
 
 // Cancel your booked Service
 export const cancelJob = (job) => async (dispatch) => {
