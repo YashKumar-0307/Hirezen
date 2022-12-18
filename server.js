@@ -38,7 +38,7 @@ app.use("/api/users/", userroute);
 // app.get("/", (req, res) => {
 //   res.send("Server Running");
 // });
-
+app.use(express.static("client/build"));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
