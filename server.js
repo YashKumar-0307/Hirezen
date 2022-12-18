@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const jobsroute = require("./routes/jobroute.js");
 const userroute = require("./routes/userroute.js");
 const PORT = process.env.PORT || 3001;
-const secrets=require("./secrets.json");
+const secrets = require("./secrets.json");
+const path = require("path");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
